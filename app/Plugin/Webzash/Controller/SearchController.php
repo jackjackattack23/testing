@@ -132,7 +132,6 @@ class SearchController extends WebzashAppController {
 				'fromdate' => $this->request->data['Search']['fromdate'],
 				'todate' => $this->request->data['Search']['todate'],
 				'tag_ids' => $tag_ids,
-				'queue_ids' => $queue_ids,
 				'narration' => $this->request->data['Search']['narration']
 			));
 		}
