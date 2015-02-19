@@ -86,11 +86,11 @@ class WzaccountsController extends WebzashAppController {
 
 			/* Check is database if anything else other than MySQL */
 			if ($this->request->data['Wzaccount']['db_datasource'] == 'Database/Sqlserver') {
-				$this->Session->setFlash(__d('webzash', 'Sorry, currently MS SQL Server is not supported. We might add it soon, if you want to help let us know.'), 'danger');
+				$this->Session->setFlash(__d('webzash', 'Sorry, currently MS SQL Server is not supported.'), 'danger');
 				return;
 			}
 			if ($this->request->data['Wzaccount']['db_datasource'] == 'Database/Postgres') {
-				$this->Session->setFlash(__d('webzash', 'Sorry, currently Postgres SQL Server is not supported. We might add it soon, if you want to help let us know.'), 'danger');
+				$this->Session->setFlash(__d('webzash', 'Sorry, currently Postgres SQL Server is not supported.'), 'danger');
 				return;
 			}
 
@@ -281,15 +281,15 @@ class WzaccountsController extends WebzashAppController {
 					return;
 				}
 
-				/* Read the database trigger from the Config folder */
+				/* Read the database trigger from the Config folder 
 				$triggers_filepath = App::pluginPath('Webzash') . 'Config/Triggers.Mysql.sql';
 				$triggers_file = new File($triggers_filepath, false);
 				$triggers = $triggers_file->read(true, 'r');
 
-				/* Add prefix to the table names in the database triggers */
+				/* Add prefix to the table names in the database triggers 
 				$final_triggers = str_replace('%_PREFIX_%', $wz_newconfig['prefix'], $triggers);
 
-				/* Add database triggers */
+				/* Add database triggers 
 				try {
 					$db->rawQuery($final_triggers);
 				} catch (Exception $e) {

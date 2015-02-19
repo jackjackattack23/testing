@@ -35,7 +35,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<?php echo $this->Html->link('Webzash', 'http://webzash.org', array('class' => 'navbar-brand', 'target' => '_blank')); ?>
+			<?php echo $this->Html->link('CPD Points', 'http://slnsandbox.com/sites/cpd-points/', array('class' => 'navbar-brand', 'target' => '_self')); ?>
 		</div>
 		<div class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">

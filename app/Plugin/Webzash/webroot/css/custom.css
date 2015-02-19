@@ -1,3 +1,94 @@
+/*---------------------Custom CSS start-----------------------------*/
+
+/* Navbar color - Accounts */
+.navbar-default {
+    background-color: #004C93;
+    border-color: #003D76;
+}
+
+
+/* Navbar color - Admin */
+.navbar-inverse {
+    background-color: #004C93;
+    border-color: #003D76;
+}
+
+
+/* CPD Points page title - default */
+.navbar-brand {
+    float: left;
+    font-size: 25px;
+    height: 50px;
+    line-height: 20px;
+    padding: 15px;
+    font-weight: bold;
+}
+
+
+/* CPD Points page title - Admin */
+.navbar-default .navbar-brand {
+    color: #fff;
+}
+
+.navbar-inverse .navbar-toggle {
+    border-color: #ffd41d;
+}
+
+.navbar-inverse .navbar-brand:hover, .navbar-inverse .navbar-brand:focus {
+    background-color: transparent;
+    color: #ffd41d;
+}
+
+/* CPD Points page title - Accounts */
+.navbar-inverse .navbar-brand {
+    color: #fff;
+}
+
+.navbar-default .navbar-toggle {
+    border-color: #fff;
+}
+
+.navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
+    background-color: transparent;
+    color: #ffd41d;
+}
+
+
+/* Accounts menu - Accounts*/
+.navbar-default .navbar-nav > li > a {
+    color: #fff;
+}
+
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+    background-color: transparent;
+    color: #ffd41d;
+}
+
+/* Accounts menu - Admin*/
+.navbar-inverse .navbar-nav > li > a {
+    color: #fff;
+}
+
+.navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus {
+    background-color: transparent;
+    color: #ffd41d;
+}
+
+
+/* Accounts & Administer button */
+.btn-danger {
+    background-color: #ffd41d;
+    border-color: #ffeda4;
+    color: #003D76;
+}
+
+.btn-danger:hover, .btn-danger:focus, .btn-danger:active, .open.dropdown-toggle.btn-danger {
+    background-color: #ffeda4;
+    border-color: #ffd41d;
+    color: #003D76;
+}
+/*----------------------------------Custom CSS End------------------------------------------------- */
+
 * {
 	margin: 0;
 	padding: 0;

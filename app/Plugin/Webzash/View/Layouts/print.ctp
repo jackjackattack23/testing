@@ -24,8 +24,8 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 <head>
 	<?php echo $this->Html->charset(); ?>
 	<title>
-		Webzash | <?php echo $title_for_layout; ?>
-	</title>
+     CPD Points | <?php echo $title_for_layout; ?>
+    </title>
 	<?php
 		echo $this->Html->meta('favicon.ico',
 			$this->Html->url('/' . 'webzash/img/favicon.ico', true),
@@ -58,6 +58,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 			<?php echo $this->fetch('content'); ?>
 		</div>
 		<div id="footer">
+			Powered by <a href="http://www.open.suny.edu/" target="_blank">Open SUNY </a>
 		</div>
 		<div id="printer">
 			<form>

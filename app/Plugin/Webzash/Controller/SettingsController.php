@@ -331,15 +331,15 @@ class SettingsController extends WebzashAppController {
 					return;
 				}
 
-				/* Read the database trigger from the Config folder */
+				/* Read the database trigger from the Config folder 
 				$triggers_filepath = App::pluginPath('Webzash') . 'Config/Triggers.Mysql.sql';
 				$triggers_file = new File($triggers_filepath, false);
 				$triggers = $triggers_file->read(true, 'r');
 
-				/* Add prefix to the table names in the database triggers */
+				/* Add prefix to the table names in the database triggers 
 				$final_triggers = str_replace('%_PREFIX_%', $wz_newconfig['prefix'], $triggers);
 
-				/* Add database triggers */
+				/* Add database triggers 
 				try {
 					$db->rawQuery($final_triggers);
 				} catch (Exception $e) {
