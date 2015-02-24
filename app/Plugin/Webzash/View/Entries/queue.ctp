@@ -122,15 +122,12 @@ $(document).ready(function() {
 <th><?php echo $this->Paginator->sort('dr_total', __d('webzash', 'Debit Amount')); ?></th>
 <th><?php echo $this->Paginator->sort('cr_total', __d('webzash', 'Credit Amount')); ?></th>
 <th><?php echo __d('webzash', 'Actions'); ?></th>
-<th><?php echo $this->Paginator->sort('q_name', __d('webzash', 'Needs Approval')); ?></th>
 </tr>
 
 <?php
 foreach ($entries as $entry) {
 	$entryTypeName = Configure::read('Account.ET.' . $entry['Entry']['entrytype_id'] . '.name');
 	$entryTypeLabel = Configure::read('Account.ET.' . $entry['Entry']['entrytype_id'] . '.label');
-	$entryQueueName = Configure::read('Account.ET.' . $entry['Entry']['queue'] . '.q_name');
-	$entryQueueLabel = Configure::read('Account.ET.' . $entry['Entry']['queue'] . '.q_label');
 	echo '<tr>';
 	echo '<td>' . dateFromSql($entry['Entry']['date']) . '</td>';
 	echo '<td>' . h(toEntryNumber($entry['Entry']['number'], $entry['Entry']['entrytype_id'])) . '</td>';
@@ -139,7 +136,6 @@ foreach ($entries as $entry) {
 	echo '<td>' . $this->Generic->showTag($entry['Entry']['tag_id']) . '</td>';
 	echo '<td>' . toCurrency('D', $entry['Entry']['dr_total']) . '</td>';
 	echo '<td>' . toCurrency('C', $entry['Entry']['cr_total']) . '</td>';
-	echo '<td>' . h($entryQueueName) . '</td>';
 
 	echo '<td>';
 
