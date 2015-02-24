@@ -60,12 +60,12 @@
 			</div>
 		</div>
 		<div class="settings-container">
-			<div class="settings-title">
-				<?php echo $this->Html->link(__d('webzash', 'Download backup'), array('plugin' => 'webzash', 'controller' => 'settings', 'action' => 'backup')); ?>
-			</div>
-			<div class="settings-desc">
-				<?php echo __d('webzash', 'Download backup of current accounts data'); ?>
-			</div>
+			<!--<div class="settings-title">
+				<?php /* echo $this->Html->link(__d('webzash', 'Download backup'), array('plugin' => 'webzash', 'controller' => 'settings', 'action' => 'backup')); */ ?>
+			</div> -->
+			<!--<div class="settings-desc">
+				<?php/* echo __d('webzash', 'Download backup of current accounts data'); */ ?>
+			</div>-->
 		</div>
 	</div>
 	<div class="col-md-4">

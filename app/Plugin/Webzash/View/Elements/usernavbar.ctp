@@ -37,14 +37,6 @@
 			</button>
 			<?php echo $this->Html->link('CPD Points', 'http://slnsandbox.com/sites/cpd-points/', array('class' => 'navbar-brand', 'target' => '_self')); ?>
 		</div>
-		<div class="navbar-collapse collapse">
-			<ul class="nav navbar-nav">
-			</ul>
-			<ul class="nav navbar-nav navbar-right">
-				<li><?php echo $this->Html->link(__d('webzash', 'Register'), array('plugin' => 'webzash', 'controller' => 'wzusers', 'action' => 'register')); ?></li>
-				<li><?php echo $this->Html->link(__d('webzash', 'Login'), array('plugin' => 'webzash', 'controller' => 'wzusers', 'action' => 'login')); ?></li>
-			</ul>
-		</div><!--/.nav-collapse -->
 	</div><!--/.container-fluid -->
 </div>
 
