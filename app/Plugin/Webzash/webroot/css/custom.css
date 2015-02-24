@@ -76,13 +76,13 @@
 
 
 /* Accounts & Administer button */
-.btn-danger {
+.btn-danger1 {
     background-color: #ffd41d;
     border-color: #ffeda4;
     color: #003D76;
 }
 
-.btn-danger:hover, .btn-danger:focus, .btn-danger:active, .open.dropdown-toggle.btn-danger {
+.btn-danger1:hover, .btn-danger1:focus, .btn-danger1:active, .open.dropdown-toggle.btn-danger1 {
     background-color: #ffeda4;
     border-color: #ffd41d;
     color: #003D76;

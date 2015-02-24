@@ -166,6 +166,15 @@ $(document).ready(function() {
 
 	echo '<br /><br />';
 
+	/* Approve */
+	echo $this->Html->link(__d('webzash', 'Approve'), array('plugin' => 'webzash', 'controller' => 'entries', 'action' => 'approve', $entrytype['Entrytype']['label'], $entry['Entry']['id']), array('class' => 'btn btn-success'));
+
+	echo $this->Html->tag('span', '', array('class' => 'link-pad'));
+	
+	/* Reject */
+	echo $this->Html->link(__d('webzash', 'Reject'), array('plugin' => 'webzash', 'controller' => 'entries', 'action' => 'reject', $entrytype['Entrytype']['label'], $entry['Entry']['id']), array('class' => 'btn btn-danger'));
+
+	echo $this->Html->tag('span', '', array('class' => 'link-pad'));
 	/* Edit */
 	echo $this->Html->link(__d('webzash', 'Edit'), array('plugin' => 'webzash', 'controller' => 'entries', 'action' => 'edit', $entrytype['Entrytype']['label'], $entry['Entry']['id']), array('class' => 'btn btn-primary'));
 

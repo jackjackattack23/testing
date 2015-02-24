@@ -61,7 +61,7 @@
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<?php if ($this->Session->read('Auth.User.role') == 'admin') : ?>
-					<li><span><?php echo $this->Html->link(__d('webzash', 'Administer'), array('plugin' => 'webzash', 'controller' => 'admin', 'action' => 'index'), array('class' => 'btn btn-danger navbar-btn')); ?></span></li>
+					<li><span><?php echo $this->Html->link(__d('webzash', 'Administer'), array('plugin' => 'webzash', 'controller' => 'admin', 'action' => 'index'), array('class' => 'btn btn-danger1 navbar-btn')); ?></span></li>
 				<?php endif; ?>
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Settings <b class="caret"></b></a>
