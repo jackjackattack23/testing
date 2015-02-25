@@ -39,6 +39,62 @@ class EntriesController extends WebzashAppController {
 	public $uses = array('Webzash.Entry', 'Webzash.Group', 'Webzash.Ledger',
 		'Webzash.Entrytype', 'Webzash.Entryitem', 'Webzash.Tag', 'Webzash.Log');
 
+/**
+ * index method
+ *
+ * @return void
+ */
+	public function index() {
+
+		$this->set('title_for_layout', __d('webzash', 'List Of Entries'));
+
+		$conditions = array();
+
+		/* Filter by entry type */
+		if (isset($this->passedArgs['show'])) {
+			$entrytype = $this->Entrytype->find('first', array('conditions' => array('Entrytype.label' => $this->passedArgs['show'])));
+			if (!$entrytype) {
+				$this->Session->setFlash(__d('webzash', 'Entry type not found. Showing all entries.'), 'danger');
+				return $this->redirect(array('plugin' => 'webzash', 'controller' => 'entries', 'action' => 'index'));
+			}
+
+			$conditions['Entry.entrytype_id'] = $entrytype['Entrytype']['id'];
+		}
+
+		/* Filter by tag */
+		if (isset($this->passedArgs['tag'])) {
+			$conditions['Entry.tag_id'] = $this->passedArgs['tag'];
+		}
+
+		/* Setup pagination */
+		$this->CustomPaginator->settings = array(
+			'Entry' => array(
+				'limit' => $this->Session->read('Wzsetting.row_count'),
+				'conditions' => $conditions,
+				'order' => array('Entry.date' => 'desc'),
+			)
+		);
+
+		if ($this->request->is('post')) {
+			if (empty($this->request->data['Entry']['show'])) {
+				return $this->redirect(array('plugin' => 'webzash', 'controller' => 'entries', 'action' => 'index'));
+			} else {
+				return $this->redirect(array('plugin' => 'webzash', 'controller' => 'entries', 'action' => 'index', 'show' => $this->request->data['Entry']['show']));
+			}
+		}
+
+		if (empty($this->passedArgs['show'])) {
+			$this->request->data['Entry']['show'] = '0';
+		} else {
+			$this->request->data['Entry']['show'] = $this->passedArgs['show'];
+		}
+
+		/* Pass varaibles to view which are used in Helpers */
+		$this->set('allTags', $this->Tag->fetchAll());
+
+		$this->set('entries', $this->CustomPaginator->paginate('Entry'));
+		return;
+	}
 
 /**
  * queue method
@@ -103,64 +159,7 @@ class EntriesController extends WebzashAppController {
 
 		return;
 	}
-
-/**
- * index method
- *
- * @return void
- */
-	public function index() {
-
-		$this->set('title_for_layout', __d('webzash', 'List Of Entries'));
-
-		$conditions = array();
-
-		/* Filter by entry type */
-		if (isset($this->passedArgs['show'])) {
-			$entrytype = $this->Entrytype->find('first', array('conditions' => array('Entrytype.label' => $this->passedArgs['show'])));
-			if (!$entrytype) {
-				$this->Session->setFlash(__d('webzash', 'Entry type not found. Showing all entries.'), 'danger');
-				return $this->redirect(array('plugin' => 'webzash', 'controller' => 'entries', 'action' => 'index'));
-			}
-
-			$conditions['Entry.entrytype_id'] = $entrytype['Entrytype']['id'];
-		}
-
-		/* Filter by tag */
-		if (isset($this->passedArgs['tag'])) {
-			$conditions['Entry.tag_id'] = $this->passedArgs['tag'];
-		}
-
-		/* Setup pagination */
-		$this->CustomPaginator->settings = array(
-			'Entry' => array(
-				'limit' => $this->Session->read('Wzsetting.row_count'),
-				'conditions' => $conditions,
-				'order' => array('Entry.date' => 'desc'),
-			)
-		);
-
-		if ($this->request->is('post')) {
-			if (empty($this->request->data['Entry']['show'])) {
-				return $this->redirect(array('plugin' => 'webzash', 'controller' => 'entries', 'action' => 'index'));
-			} else {
-				return $this->redirect(array('plugin' => 'webzash', 'controller' => 'entries', 'action' => 'index', 'show' => $this->request->data['Entry']['show']));
-			}
-		}
-
-		if (empty($this->passedArgs['show'])) {
-			$this->request->data['Entry']['show'] = '0';
-		} else {
-			$this->request->data['Entry']['show'] = $this->passedArgs['show'];
-		}
-
-		/* Pass varaibles to view which are used in Helpers */
-		$this->set('allTags', $this->Tag->fetchAll());
-
-		$this->set('entries', $this->CustomPaginator->paginate('Entry'));
-		return;
-	}
-
+	
 /**
  * view method
  *
@@ -514,6 +513,28 @@ class EntriesController extends WebzashAppController {
 	}
 
 
+/**
+ * Approve method
+ *
+ * @param string $entrytypeLabel
+ * @param string $id
+ * @return void
+ */
+ 	public function approve() {
+
+	}
+ 
+ /**
+ * Reject method
+ *
+ * @param string $entrytypeLabel
+ * @param string $id
+ * @return void
+ */
+ 	public function reject() {
+
+	}
+ 
 /**
  * edit method
  *

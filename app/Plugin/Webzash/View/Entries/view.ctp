@@ -165,6 +165,8 @@ $(document).ready(function() {
 	echo __d('webzash', 'Tag') . ' : ' . $this->Generic->showTag($entry['Entry']['tag_id']);
 
 	echo '<br /><br />';
+	
+	echo 'Actions: ' . '<br /><br />';
 
 	/* Approve */
 	echo $this->Html->link(__d('webzash', 'Approve'), array('plugin' => 'webzash', 'controller' => 'entries', 'action' => 'approve', $entrytype['Entrytype']['label'], $entry['Entry']['id']), array('class' => 'btn btn-success'));
@@ -172,19 +174,25 @@ $(document).ready(function() {
 	echo $this->Html->tag('span', '', array('class' => 'link-pad'));
 	
 	/* Reject */
-	echo $this->Html->link(__d('webzash', 'Reject'), array('plugin' => 'webzash', 'controller' => 'entries', 'action' => 'reject', $entrytype['Entrytype']['label'], $entry['Entry']['id']), array('class' => 'btn btn-danger'));
+	echo $this->Html->link(__d('webzash', ' Reject'), array('plugin' => 'webzash', 'controller' => 'entries', 'action' => 'reject', $entrytype['Entrytype']['label'], $entry['Entry']['id']), array('class' => 'btn btn-warning'));
 
 	echo $this->Html->tag('span', '', array('class' => 'link-pad'));
+	
 	/* Edit */
 	echo $this->Html->link(__d('webzash', 'Edit'), array('plugin' => 'webzash', 'controller' => 'entries', 'action' => 'edit', $entrytype['Entrytype']['label'], $entry['Entry']['id']), array('class' => 'btn btn-primary'));
 
 	echo $this->Html->tag('span', '', array('class' => 'link-pad'));
 
 	/* Delete */
-	echo $this->Form->postLink(__d('webzash', 'Delete'), array('plugin' => 'webzash', 'controller' => 'entries', 'action' => 'delete', $entrytype['Entrytype']['label'], $entry['Entry']['id']), array('class' => 'btn btn-primary', 'confirm' => __d('webzash', 'Are you sure ?')));
+	echo $this->Form->postLink(__d('webzash', 'Delete'), array('plugin' => 'webzash', 'controller' => 'entries', 'action' => 'delete', $entrytype['Entrytype']['label'], $entry['Entry']['id']), array('class' => 'btn btn-danger', 'confirm' => __d('webzash', 'Are you sure ?')));
 
 	echo $this->Html->tag('span', '', array('class' => 'link-pad'));
 
+	/* Cancel */
+	echo $this->Html->link(__d('webzash', 'Cancel'), array('plugin' => 'webzash', 'controller' => 'entries', 'action' => 'index'), array('class' => 'btn btn-default'));
+	
+	echo '<br /><br />';
+	
 	/* Email */
 	echo '<a href="#" data-toggle="modal" data-id="' . $entry['Entry']['id'] . '" data-type="' . h($entrytype['Entrytype']['name']) . '" data-number="' . h(toEntryNumber($entry['Entry']['number'], $entry['Entry']['entrytype_id'])) . '" data-target="#emailModal">' . $this->Html->tag('span', '', array('class' => 'glyphicon glyphicon-envelope')) . '</a>';
 
@@ -199,9 +207,6 @@ $(document).ready(function() {
 	echo $this->Html->link($this->Html->tag('span', '', array('class' => 'glyphicon glyphicon-print')), '', array('escape' => false, 'onClick' => "window.open('" . $this->Html->url(array('controller' => 'entries', 'action' => 'printpreview', $entry['Entry']['id'])) . "', 'windowname','toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,copyhistory=no,width=600,height=600'); return false;"));
 
 	echo $this->Html->tag('span', '', array('class' => 'link-pad'));
-
-	/* Cancel */
-	echo $this->Html->link(__d('webzash', 'Cancel'), array('plugin' => 'webzash', 'controller' => 'entries', 'action' => 'index'), array('class' => 'btn btn-default'));
 ?>
 </div>
 
