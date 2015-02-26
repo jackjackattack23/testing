@@ -67,6 +67,37 @@ class GenericHelper extends AppHelper {
 				array('style' => 'color:#' . h($tag['color']) . ';')
 			) . '</span>';
 	}
+	
+	/**
+ * Helper method to return the queued status
+ */
+	function showQueue($id) {
+
+		if (empty($id)) {
+			return '';
+		}
+
+		if (empty($this->_View->viewVars['allQueues'])) {
+			return '';
+		}
+
+		$queues = $this->_View->viewVars['allQueues'];
+
+		if (empty($queues[$id])) {
+			return __d('webzash', 'ERROR');
+		}
+
+		$queue = $queues[$id];
+
+		return $this->Html->link($queue['name'], array(
+					'plugin' => 'webzash',
+					'controller' => 'entries',
+					'action' => 'index',
+					'queue' => $queue['id']
+				),
+				array()
+			);
+	}
 
 /**
  * Show the entry ledger details

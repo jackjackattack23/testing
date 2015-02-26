@@ -87,6 +87,15 @@
     border-color: #ffd41d;
     color: #003D76;
 }
+
+.queue {
+	border-radius: 5px 5px 5px 5px;
+	font-size: 10px;
+	font-weight: bold;
+	margin: 0 5px 0 1px;
+	padding: 4px;
+	text-decoration: none;
+}
 /*----------------------------------Custom CSS End------------------------------------------------- */
 
 * {

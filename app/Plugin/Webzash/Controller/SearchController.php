@@ -36,7 +36,7 @@ App::uses('WebzashAppController', 'Webzash.Controller');
 class SearchController extends WebzashAppController {
 
 	public $uses = array('Webzash.Ledger', 'Webzash.Entry', 'Webzash.Entryitem',
-		'Webzash.Entrytype', 'Webzash.Tag');
+		'Webzash.Entrytype', 'Webzash.Tag', 'Webzash.Queue');
 
 /**
  * index method
@@ -132,6 +132,73 @@ class SearchController extends WebzashAppController {
 				'fromdate' => $this->request->data['Search']['fromdate'],
 				'todate' => $this->request->data['Search']['todate'],
 				'tag_ids' => $tag_ids,
+				'queue_ids' => $queue_ids,
+				'narration' => $this->request->data['Search']['narration']
+			));
+		}
+		
+		/* Queue */
+		$queue_options = array();
+		$queue_options[0] = '(ALL)';
+		$rawqueues = $this->Queue->find('all', array(
+			'order' => 'Queue.name'
+		));
+		foreach ($rawqueues as $row => $rawqueue) {
+			$queue_options[$rawqueue['Queue']['id']] = h($rawqueue['Queue']['name']);
+		}
+		$this->set('queue_options', $queue_options);
+
+		if ($this->request->is('post') || $this->request->is('put')) {
+
+			$ledger_ids = '';
+			if (empty($this->request->data['Search']['ledger_ids'])) {
+				$ledger_ids = '0';
+			} else {
+				if (in_array('0', $this->request->data['Search']['ledger_ids'])) {
+					$ledger_ids = '0';
+				} else {
+					$ledger_ids = implode(',', $this->request->data['Search']['ledger_ids']);
+				}
+			}
+
+			$entrytype_ids = '';
+			if (empty($this->request->data['Search']['entrytype_ids'])) {
+				$entrytype_ids = '0';
+			} else {
+				if (in_array('0', $this->request->data['Search']['entrytype_ids'])) {
+					$entrytype_ids = '0';
+				} else {
+					$entrytype_ids = implode(',', $this->request->data['Search']['entrytype_ids']);
+				}
+			}
+
+			$queue_ids = '';
+			if (empty($this->request->data['Search']['queue_ids'])) {
+				$queue_ids = '0';
+			} else {
+				if (in_array('0', $this->request->data['Search']['queue_ids'])) {
+					$queue_ids = '0';
+				} else {
+					$queue_ids = implode(',', $this->request->data['Search']['queue_ids']);
+				}
+			}
+
+			return $this->redirect(array(
+				'plugin' => 'webzash', 'controller' => 'search', 'action' => 'index',
+				'search' => 1,
+				'ledger_ids' => $ledger_ids,
+				'entrytype_ids' => $entrytype_ids,
+				'entrynumber_restriction' => $this->request->data['Search']['entrynumber_restriction'],
+				'entrynumber1' => $this->request->data['Search']['entrynumber1'],
+				'entrynumber2' => $this->request->data['Search']['entrynumber2'],
+				'amount_dc' => $this->request->data['Search']['amount_dc'],
+				'amount_restriction' => $this->request->data['Search']['amount_restriction'],
+				'amount1' => $this->request->data['Search']['amount1'],
+				'amount2' => $this->request->data['Search']['amount2'],
+				'fromdate' => $this->request->data['Search']['fromdate'],
+				'todate' => $this->request->data['Search']['todate'],
+				'tag_ids' => $tag_ids,
+				'queue_ids' => $queue_ids,
 				'narration' => $this->request->data['Search']['narration']
 			));
 		}
@@ -166,6 +233,8 @@ class SearchController extends WebzashAppController {
 			$this->passedArgs['todate'];
 		$this->request->data['Search']['tag_ids'] =
 			explode(',', $this->passedArgs['tag_ids']);
+		$this->request->data['Search']['queue_ids'] =
+			explode(',', $this->passedArgs['queue_ids']);
 		$this->request->data['Search']['narration'] =
 			$this->passedArgs['narration'];
 
@@ -252,6 +321,13 @@ class SearchController extends WebzashAppController {
 			if (!in_array('0', $this->request->data['Search']['tag_ids'])) {
 				$conditions['Entry.tag_id'] =
 					$this->request->data['Search']['tag_ids'];
+			}
+		}
+		
+		if (!empty($this->passedArgs['queue_ids'])) {
+			if (!in_array('0', $this->request->data['Search']['queue_ids'])) {
+				$conditions['Entry.queue_id'] =
+					$this->request->data['Search']['queue_ids'];
 			}
 		}
 

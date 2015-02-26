@@ -80,7 +80,7 @@ class PermissionComponent extends Component {
 			'access reports',
 
 			'view log',
-			'clear log',
+			/*'clear log',*/
 
 			'change account settings',
 			'cf account',
@@ -90,34 +90,35 @@ class PermissionComponent extends Component {
 			'view accounts chart',
 
 			'view entry',
-			'add entry',
+			/*'add entry',
 			'edit entry',
-			'delete entry',
+			'delete entry',*/
 			'print entry',
 			'email entry',
 			'download entry',
 
 			'search',
 
-			'add ledger',
+			/*'add ledger',
 			'edit ledger',
-			'delete ledger',
+			'delete ledger',*/
 
-			'add group',
+			/*'add group',
 			'edit group',
-			'delete group',
+			'delete group',*/
 
 			'view tag',
-			'add tag',
+			/*'add tag',
 			'edit tag',
-			'delete tag',
+			'delete tag',*/
 
 			'access reports',
 		);
+
 		$permissions['dataentry'] = array(
 			'view accounts chart',
 
-			'view entry',
+			/*'view entry',
 			'add entry',
 			'edit entry',
 			'print entry',
@@ -127,16 +128,17 @@ class PermissionComponent extends Component {
 			'search',
 
 			'add ledger',
-			'edit ledger',
+			'edit ledger',*/
 		);
 		$permissions['guest'] = array(
 			'view accounts chart',
 
-			'view entry',
+			/*'view entry',
 			'print entry',
 			'email entry',
-			'download entry',
+			'download entry',*/
 		);
+
 
 		if (!isset($account_role)) {
 			$this->Session->setFlash(__d('webzash', 'Access denied.'), 'danger');

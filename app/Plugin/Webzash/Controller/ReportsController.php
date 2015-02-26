@@ -43,7 +43,7 @@ class ReportsController extends WebzashAppController {
  * @var array
  */
 	public $uses = array('Webzash.Group', 'Webzash.Ledger', 'Webzash.Entry',
-		'Webzash.Entryitem', 'Webzash.Tag');
+		'Webzash.Entryitem', 'Webzash.Tag', 'Webzash.Queue');
 
 /**
  * index method
@@ -816,6 +816,12 @@ class ReportsController extends WebzashAppController {
 
 		$this->set('entries', $this->CustomPaginator->paginate('Entry'));
 		$this->set('showEntries', true);
+		
+		/* Pass varaibles to view which are used in Helpers */
+		$this->set('allQueues', $this->Queue->fetchAll());
+
+		$this->set('entries', $this->CustomPaginator->paginate('Entry'));
+		$this->set('showEntries', true);
 
 		/* Download report */
 		if (isset($this->passedArgs['downloadcsv'])) {
@@ -1349,6 +1355,9 @@ class ReportsController extends WebzashAppController {
 
 		/* Pass varaibles to view which are used in Helpers */
 		$this->set('allTags', $this->Tag->fetchAll());
+		
+		/* Pass varaibles to view which are used in Helpers */
+		$this->set('allQueues', $this->Queue->fetchAll());
 
 		$this->set('entries', $this->CustomPaginator->paginate('Entry'));
 		$this->set('showEntries', true);

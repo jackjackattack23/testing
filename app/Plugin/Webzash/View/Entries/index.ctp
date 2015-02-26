@@ -122,6 +122,7 @@ $(document).ready(function() {
 <th><?php echo $this->Paginator->sort('dr_total', __d('webzash', 'Debit Amount')); ?></th>
 <th><?php echo $this->Paginator->sort('cr_total', __d('webzash', 'Credit Amount')); ?></th>
 <th><?php echo __d('webzash', 'Actions'); ?></th>
+
 </tr>
 
 <?php
@@ -158,7 +159,7 @@ foreach ($entries as $entry) {
 	echo $this->Html->link($this->Html->tag('span', '', array('class' => 'glyphicon glyphicon-print')), '', array('escape' => false, 'onClick' => "window.open('" . $this->Html->url(array('controller' => 'entries', 'action' => 'printpreview', $entry['Entry']['id'])) . "', 'windowname','toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,copyhistory=no,width=600,height=600'); return false;"));
 
 	echo '</td>';
-
+	
 	echo '</tr>';
 }
 ?>

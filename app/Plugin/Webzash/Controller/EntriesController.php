@@ -35,9 +35,9 @@ App::uses('LedgerTree', 'Webzash.Lib');
  * @subpackage Webzash.Controllers
  */
 class EntriesController extends WebzashAppController {
-
+	
 	public $uses = array('Webzash.Entry', 'Webzash.Group', 'Webzash.Ledger',
-		'Webzash.Entrytype', 'Webzash.Entryitem', 'Webzash.Tag', 'Webzash.Log');
+		'Webzash.Entrytype', 'Webzash.Entryitem', 'Webzash.Tag', 'Webzash.Queue', 'Webzash.Log');
 
 /**
  * index method
@@ -64,6 +64,11 @@ class EntriesController extends WebzashAppController {
 		/* Filter by tag */
 		if (isset($this->passedArgs['tag'])) {
 			$conditions['Entry.tag_id'] = $this->passedArgs['tag'];
+		}
+		
+		/* Filter by queued status */
+		if (isset($this->passedArgs['queue'])) {
+			$conditions['Entry.queue_id'] = $this->passedArgs['queue'];
 		}
 
 		/* Setup pagination */
@@ -96,6 +101,7 @@ class EntriesController extends WebzashAppController {
 		return;
 	}
 
+	
 /**
  * view method
  *
@@ -158,6 +164,8 @@ class EntriesController extends WebzashAppController {
 
 		/* Pass varaibles to view which are used in Helpers */
 		$this->set('allTags', $this->Tag->fetchAll());
+		
+		$this->set('allQueues', $this->Queue->fetchAll());
 
 		$this->set('entry', $entry);
 
@@ -276,6 +284,13 @@ class EntriesController extends WebzashAppController {
 					$entrydata['Entry']['tag_id'] = null;
 				} else {
 					$entrydata['Entry']['tag_id'] = $this->request->data['Entry']['tag_id'];
+				}
+				
+				/****** Check queued status ******/
+				if (empty($this->request->data['Entry']['queue_id'])) {
+					$entrydata['Entry']['queue_id'] = null;
+				} else {
+					$entrydata['Entry']['queue_id'] = $this->request->data['Entry']['queue_id'];
 				}
 
 				/***** Narration *****/
@@ -447,8 +462,7 @@ class EntriesController extends WebzashAppController {
 			}
 		}
 	}
-
-
+ 
 /**
  * edit method
  *
@@ -473,6 +487,8 @@ class EntriesController extends WebzashAppController {
 		$this->set('title_for_layout', __d('webzash', 'Edit %s Entry', $entrytype['Entrytype']['name']));
 
 		$this->set('tag_options', $this->Tag->listAll());
+		
+		$this->set('queue_options', $this->Queue->listAll());
 
 		/* Ledger selection */
 		$ledgers = new LedgerTree();
@@ -574,6 +590,13 @@ class EntriesController extends WebzashAppController {
 					$entrydata['Entry']['tag_id'] = null;
 				} else {
 					$entrydata['Entry']['tag_id'] = $this->request->data['Entry']['tag_id'];
+				}
+				
+				/****** Check queued status ******/
+				if (empty($this->request->data['Entry']['queue_id'])) {
+					$entrydata['Entry']['queue_id'] = null;
+				} else {
+					$entrydata['Entry']['queue_id'] = $this->request->data['Entry']['queue_id'];
 				}
 
 				/***** Narration *****/

@@ -241,6 +241,7 @@ class WzaccountsController extends WebzashAppController {
 					$wz_newconfig['prefix'] . 'logs',
 					$wz_newconfig['prefix'] . 'settings',
 					$wz_newconfig['prefix'] . 'tags',
+					$wz_newconfig['prefix'] . 'queues',
 				);
 
 				/* Check if any table from $new_table already exists */

@@ -146,7 +146,8 @@ $(document).ready(function() {
 
 	/* Difference */
 	if (calculate($entry['Entry']['dr_total'], $entry['Entry']['cr_total'], '==')) {
-		/* Do nothing */
+	
+	/* Do nothing */
 	} else {
 		if (calculate($entry['Entry']['dr_total'], $entry['Entry']['cr_total'], '>')) {
 			echo '<tr class="error-text">' . '<td></td>' . '<td>' . __d('webzash', 'Difference') . '</td>' . '<td id="dr-diff">' . toCurrency('D', calculate($entry['Entry']['dr_total'], $entry['Entry']['cr_total'], '-')) . '</td>' . '<td></td>' . '</tr>';
@@ -160,10 +161,13 @@ $(document).ready(function() {
 
 	echo '<br />';
 
-	echo '<span class="bold-text">' . __d('webzash', 'Narration') . ' : ' . '</span>' . h($entry['Entry']['narration']);
+	echo '<span class="bold-text">' . __d('webzash', 'Description') . ' : ' . '</span>' . h($entry['Entry']['narration']);
 	echo '<br /><br />';
 	echo '<span class="bold-text">' . __d('webzash', 'Tag') . ' : ' . '</span>' . $this->Generic->showTag($entry['Entry']['tag_id']);
 
+	echo '<br /><br />';
+	echo '<span class="bold-text">' . __d('webzash', 'Status') . ' : ' . '</span>' . $this->Generic->showQueue($entry['Entry']['queue_id']);
+	
 	echo '<br /><br />';
 
 	echo '<span class="bold-text">' . __d('webzash', 'Actions') . '</span>' . ' : ';
