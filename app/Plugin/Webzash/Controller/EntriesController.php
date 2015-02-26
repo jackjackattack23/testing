@@ -35,7 +35,7 @@ App::uses('LedgerTree', 'Webzash.Lib');
  * @subpackage Webzash.Controllers
  */
 class EntriesController extends WebzashAppController {
-	
+
 	public $uses = array('Webzash.Entry', 'Webzash.Group', 'Webzash.Ledger',
 		'Webzash.Entrytype', 'Webzash.Entryitem', 'Webzash.Tag', 'Webzash.Log');
 
@@ -96,70 +96,6 @@ class EntriesController extends WebzashAppController {
 		return;
 	}
 
-/**
- * queue method
- */
-	public function queue($entrytypeLabel = null, $id = null) {
-
-		/* Check for valid entry type */
-		if (!$entrytypeLabel) {
-			$this->Session->setFlash(__d('webzash', 'Entry type not specified.'), 'danger');
-			return $this->redirect(array('plugin' => 'webzash', 'controller' => 'entries', 'action' => 'index'));
-		}
-		$entrytype = $this->Entrytype->find('first', array('conditions' => array('Entrytype.label' => $entrytypeLabel)));
-		if (!$entrytype) {
-			$this->Session->setFlash(__d('webzash', 'Entry type not found.'), 'danger');
-			return $this->redirect(array('plugin' => 'webzash', 'controller' => 'entries', 'action' => 'index'));
-		}
-		$this->set('entrytype', $entrytype);
-
-		$this->set('title_for_layout', __d('webzash', 'View %s Entry', $entrytype['Entrytype']['name']));
-
-		/* Check for valid entry id */
-		if (empty($id)) {
-			$this->Session->setFlash(__d('webzash', 'Entry not specified.'), 'danger');
-			return $this->redirect(array('plugin' => 'webzash', 'controller' => 'entries', 'action' => 'index'));
-		}
-		$entry = $this->Entry->findById($id);
-		if (!$entry) {
-			$this->Session->setFlash(__d('webzash', 'Entry not found.'), 'danger');
-			return $this->redirect(array('plugin' => 'webzash', 'controller' => 'entries', 'action' => 'index'));
-		}
-
-		/* Initial data */
-		$curEntryitems = array();
-		$curEntryitemsData = $this->Entryitem->find('all', array(
-			'conditions' => array('Entryitem.entry_id' => $id),
-		));
-		foreach ($curEntryitemsData as $row => $data) {
-			if ($data['Entryitem']['dc'] == 'D') {
-				$curEntryitems[$row] = array(
-					'dc' => $data['Entryitem']['dc'],
-					'ledger_id' => $data['Entryitem']['ledger_id'],
-					'ledger_name' => $this->Ledger->getName($data['Entryitem']['ledger_id']),
-					'dr_amount' => $data['Entryitem']['amount'],
-					'cr_amount' => '',
-				);
-			} else {
-				$curEntryitems[$row] = array(
-					'dc' => $data['Entryitem']['dc'],
-					'ledger_id' => $data['Entryitem']['ledger_id'],
-					'ledger_name' => $this->Ledger->getName($data['Entryitem']['ledger_id']),
-					'dr_amount' => '',
-					'cr_amount' => $data['Entryitem']['amount'],
-				);
-			}
-		}
-		$this->set('curEntryitems', $curEntryitems);
-
-		/* Pass varaibles to view which are used in Helpers */
-		$this->set('allTags', $this->Tag->fetchAll());
-
-		$this->set('entry', $entry);
-
-		return;
-	}
-	
 /**
  * view method
  *
@@ -513,28 +449,6 @@ class EntriesController extends WebzashAppController {
 	}
 
 
-/**
- * Approve method
- *
- * @param string $entrytypeLabel
- * @param string $id
- * @return void
- */
- 	public function approve() {
-
-	}
- 
- /**
- * Reject method
- *
- * @param string $entrytypeLabel
- * @param string $id
- * @return void
- */
- 	public function reject() {
-
-	}
- 
 /**
  * edit method
  *

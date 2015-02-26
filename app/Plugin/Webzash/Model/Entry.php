@@ -165,8 +165,6 @@ class Entry extends WebzashAppModel {
 		),
 		'narration' => array(
 		),
-		'queue' => array(
-		),
 	);
 
 /**
