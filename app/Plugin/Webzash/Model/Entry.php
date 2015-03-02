@@ -165,8 +165,44 @@ class Entry extends WebzashAppModel {
 		),
 		'narration' => array(
 		),
+		'queue_id' => array(
+			'rule1' => array(
+				'rule' => 'numeric',
+				'message' => 'Entry number is not a valid number',
+				'required' => true,
+				'allowEmpty' => true,
+			),
+			'rule2' => array(
+				'rule' => array('maxLength', 18),
+				'message' => 'Entry number length cannot be more than 18',
+				'required' => true,
+				'allowEmpty' => true,
+			),
+		),
+
 	);
 
+/**
+ * Validation - Check if queue_id is valid
+ */
+	public function validQueue($data) {
+		$values = array_values($data);
+		if (!isset($values)) {
+			return false;
+		}
+		$value = $values[0];
+
+		/* Load the Queue model */
+		App::import("Webzash.Model", "Queue");
+		$Queue = new Queue();
+
+		if ($Queue->exists($value)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
 /**
  * Validation - Check if entry type is valid
  */
@@ -342,6 +378,10 @@ class Entry extends WebzashAppModel {
  * Show the entry ledger details
  */
 	public function entryLedgers($id) {
+		/* Load the Queue model */
+		App::import("Webzash.Model", "Queue");
+		$Queue = new Queue();
+		
 		/* Load the Entryitem model */
 		App::import("Webzash.Model", "Entryitem");
 		$Entryitem = new Entryitem();
@@ -380,6 +420,10 @@ class Entry extends WebzashAppModel {
 		if (strlen($cr_name) > 15) {
 			$cr_name = substr($cr_name, 0, 15) . '...';
 		}
+		
+		/* Get queue status */
+		
+		
 
 		/* if more than one ledger on dr / cr then add [+] sign */
 		if ($dr_count > 1) {

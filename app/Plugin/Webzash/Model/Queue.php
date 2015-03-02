@@ -100,24 +100,36 @@ class Queue extends WebzashAppModel {
 
 	);
 	
-	/** 2-26-15
- 	* Method to return queued items by id
- 	*/
+
+/* Validate hex value */
+	public function hex($data) {
+		$values = array_values($data);
+		if (!isset($values)) {
+			return false;
+		}
+		$value = $values[0];
+
+		return ctype_xdigit($value);
+	}
+
+/**
+ * Method to return the queue in list form
+ */
 	function listAll() {
-		$rawqueues = $this->find('all', array('fields' => array('id', 'name'),
-			'order' => 'Queue.name'));
+		$rawqueues = $this->find('all', array('fields' => array('id', 'title'),
+			'order' => 'Queue.title'));
 
 		$queues = array(0 => '(None)');
-		foreach ($rawqueues as $id => $rawqueue) {
-			$queues[$rawqueue['Queue']['id']] = h($rawqueue['Queue']['name']);
+		foreach ($rawqueues as $id => $rawqueues) {
+			$queues[$rawqueues['Queue']['id']] = h($rawqueues['Queue']['title']);
 		}
 
 		return $queues;
 	}
-	
-	/** 2-26-15
- 	* Method to return all queued items
- 	*/
+
+/**
+ * Method to return all the queue status types
+ */
 	function fetchAll() {
 		$rawqueues = $this->find('all');
 
@@ -125,12 +137,12 @@ class Queue extends WebzashAppModel {
 		foreach ($rawqueues as $id => $rawqueue) {
 			$queues[$rawqueue['Queue']['id']] = array(
 				'id' => $rawqueue['Queue']['id'],
-				'name' => h($rawqueue['Queue']['name']),
-				'description' => $rawqueue['Queue']['description'],
+				'title' => h($rawqueue['Queue']['title']),
+				'color' => $rawqueue['Queue']['color'],
+				'background' => $rawqueue['Queue']['background'],
 			);
 		}
 
 		return $queues;
 	}
-
 }

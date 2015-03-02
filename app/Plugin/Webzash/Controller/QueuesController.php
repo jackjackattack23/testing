@@ -32,10 +32,11 @@ App::uses('WebzashAppController', 'Webzash.Controller');
  *
  * @package Webzash
  * @subpackage Webzash.controllers
- */
+ */ 
+ 
 class QueuesController extends WebzashAppController {
 
-	public $uses = array('Webzash.Queue', 'Webzash.Entry', 'Webzash.Log', 'Webzash.Queue');
+	public $uses = array('Webzash.Entry', 'Webzash.Log', 'Webzash.Queue');
 
 /**
  * index method
@@ -44,16 +45,12 @@ class QueuesController extends WebzashAppController {
  */
 	public function index() {
 
-		$this->set('title_for_layout', __d('webzash', 'Queues'));
-
-		$this->set('actionlinks', array(
-			array('controller' => 'queues', 'action' => 'add', 'title' => __d('webzash', 'Add Queued Status')),
-		));
+		$this->set('title_for_layout', __d('webzash', 'View the Queue by Status Type'));
 
 		$this->CustomPaginator->settings = array(
 			'Queue' => array(
 				'limit' => $this->Session->read('Wzsetting.row_count'),
-				'order' => array('Queue.name' => 'asc'),
+				'order' => array('Queue.title' => 'asc'),
 			)
 		);
 
@@ -85,9 +82,9 @@ class QueuesController extends WebzashAppController {
 				$ds->begin();
 
 				if ($this->Queue->save($this->request->data)) {
-					$this->Log->add('Added Queued Status : ' . $this->request->data['Queue']['name'], 1);
+					$this->Log->add('Added Queued Status : ' . $this->request->data['Queue']['title'], 1);
 					$ds->commit();
-					$this->Session->setFlash(__d('webzash', 'Queued status "%s" created.', $this->request->data['Queue']['name']), 'success');
+					$this->Session->setFlash(__d('webzash', 'Queued status "%s" created.', $this->request->data['Queue']['title']), 'success');
 					return $this->redirect(array('plugin' => 'webzash', 'controller' => 'queues', 'action' => 'index'));
 				} else {
 					$ds->rollback();
@@ -143,9 +140,9 @@ class QueuesController extends WebzashAppController {
 			$ds->begin();
 
 			if ($this->Queue->save($this->request->data)) {
-				$this->Log->add('Edited Queued Status : ' . $this->request->data['Queue']['name'], 1);
+				$this->Log->add('Edited Queued Status : ' . $this->request->data['Queue']['title'], 1);
 				$ds->commit();
-				$this->Session->setFlash(__d('webzash', 'Queued status "%s" updated.', $this->request->data['Queue']['name']), 'success');
+				$this->Session->setFlash(__d('webzash', 'Queued status "%s" updated.', $this->request->data['Queue']['title']), 'success');
 				return $this->redirect(array('plugin' => 'webzash', 'controller' => 'queues', 'action' => 'index'));
 			} else {
 				$ds->rollback();
@@ -153,7 +150,7 @@ class QueuesController extends WebzashAppController {
 				return;
 			}
 		} else {
-			$this->request->data = $tag;
+			$this->request->data = $queue;
 			return;
 		}
 	}
@@ -198,9 +195,9 @@ class QueuesController extends WebzashAppController {
 		$ds->begin();
 
 		if ($this->Queue->delete($id)) {
-			$this->Log->add('Deleted Queued Status : ' . $queue['Queue']['name'], 1);
+			$this->Log->add('Deleted Queued Status : ' . $queue['Queue']['title'], 1);
 			$ds->commit();
-			$this->Session->setFlash(__d('webzash', 'Queued status "%s" deleted.', $queue['Queue']['name']), 'success');
+			$this->Session->setFlash(__d('webzash', 'Queued status "%s" deleted.', $queue['Queue']['title']), 'success');
 		} else {
 			$ds->rollback();
 			$this->Session->setFlash(__d('webzash', 'Failed to delete queued status. Please, try again.'), 'danger');
@@ -216,7 +213,7 @@ class QueuesController extends WebzashAppController {
 		if (Configure::read('Account.locked') == 1) {
 			if ($this->action == 'add' || $this->action == 'delete') {
 				$this->Session->setFlash(__d('webzash', 'Sorry, no changes are possible since the account is locked.'), 'danger');
-				return $this->redirect(array('plugin' => 'webzash', 'controller' => 'tags', 'action' => 'index'));
+				return $this->redirect(array('plugin' => 'webzash', 'controller' => 'queues', 'action' => 'index'));
 			}
 		}
 	}

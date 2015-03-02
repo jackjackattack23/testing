@@ -195,6 +195,8 @@ class EntriesController extends WebzashAppController {
 		$this->set('title_for_layout', __d('webzash', 'Add %s Entry', $entrytype['Entrytype']['name']));
 
 		$this->set('tag_options', $this->Tag->listAll());
+		
+		$this->set('queue_options', $this->Queue->listAll());
 
 		/* Ledger selection */
 		$ledgers = new LedgerTree();

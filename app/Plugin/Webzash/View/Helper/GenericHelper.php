@@ -89,14 +89,16 @@ class GenericHelper extends AppHelper {
 
 		$queue = $queues[$id];
 
-		return $this->Html->link($queue['name'], array(
+		return '<span class="queue" style="color:#' . h($queue['color']) .
+			'; background-color:#' . h($queue['background']) . ';">' .
+			$this->Html->link($queue['title'], array(
 					'plugin' => 'webzash',
 					'controller' => 'entries',
 					'action' => 'index',
 					'queue' => $queue['id']
 				),
-				array()
-			);
+				array('style' => 'color:#' . h($queue['color']) . ';')
+			) . '</span>';
 	}
 
 /**

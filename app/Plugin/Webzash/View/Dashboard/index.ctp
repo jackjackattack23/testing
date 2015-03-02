@@ -115,6 +115,18 @@ if (!extension_loaded('bcmath')) {
 	</div>
 	<div class="col-md-4">
 		<div class="panel panel-info">
+			<div class="panel-heading"><?php echo __d('webzash', 'View the Queue'); ?></div>
+			<div class="panel-body">
+            	<table>
+					<tr>
+						<td><?php echo '<a href="/sites/cpd-points-dev/entries/index/queue:1" class = "btn btn-default">Approved Items</a>'; ?></td>
+                        <td><?php echo '<a href="/sites/cpd-points-dev/entries/index/queue:2" class = "btn btn-default">Rejected Items</a>'; ?></td>
+                        <td><?php echo '<a href="/sites/cpd-points-dev/entries/index/queue:3" class = "btn btn-default">Pending Items</a>'; ?></td>
+				    </tr>
+                </table>
+			</div>
+		</div>
+        <div class="panel panel-info">
 			<div class="panel-heading"><?php echo __d('webzash', 'Recent activity'); ?></div>
 			<div class="panel-body">
 				<?php

@@ -33,6 +33,35 @@ class BoostCakeHtmlHelper extends HtmlHelper {
 	}
 
 /**
+ * Overwrite HtmlHelper::useQueue()
+ * If $queue is `<input type="radio">` then replace `<label>` position
+ * Returns a formatted existent block of $queues
+ *
+ * @param string $queue Queue name
+ * @return string Formatted block
+ */
+	public function useQueue($queue) {
+		$args = func_get_args();
+
+		if ($queue === 'radio') {
+			$class = (isset($args[3]['class'])) ? $args[3]['class'] : 'radio';
+			unset($args[3]['class']);
+		}
+
+		$html = call_user_func_array(array('parent', 'useQueue'), $args);
+
+		if ($queue === 'radio') {
+			$regex = '/(<label)(.*?>)/';
+			if (preg_match($regex, $html, $match)) {
+				$html = $match[1] . ' class="' . $class . '"' . $match[2] . preg_replace($regex, ' ', $html);
+			}
+		}
+
+		return $html;
+	}
+
+
+/**
  * Creates a formatted IMG element.
  *
  * This method will set an empty alt attribute if one is not supplied.

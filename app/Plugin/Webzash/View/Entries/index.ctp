@@ -110,9 +110,10 @@ $(document).ready(function() {
 		<?php echo $this->Form->end(__d('webzash', '')); ?>
 	</div>
 </div>
-<br />
-<table class="stripped">
 
+<br />
+
+<table class="stripped">
 <tr>
 <th><?php echo $this->Paginator->sort('date', __d('webzash', 'Date')); ?></th>
 <th><?php echo $this->Paginator->sort('number', __d('webzash', 'Number')); ?></th>
@@ -122,7 +123,6 @@ $(document).ready(function() {
 <th><?php echo $this->Paginator->sort('dr_total', __d('webzash', 'Debit Amount')); ?></th>
 <th><?php echo $this->Paginator->sort('cr_total', __d('webzash', 'Credit Amount')); ?></th>
 <th><?php echo __d('webzash', 'Actions'); ?></th>
-
 </tr>
 
 <?php
@@ -137,7 +137,7 @@ foreach ($entries as $entry) {
 	echo '<td>' . $this->Generic->showTag($entry['Entry']['tag_id']) . '</td>';
 	echo '<td>' . toCurrency('D', $entry['Entry']['dr_total']) . '</td>';
 	echo '<td>' . toCurrency('C', $entry['Entry']['cr_total']) . '</td>';
-
+	
 	echo '<td>';
 
 	/* View */
@@ -176,6 +176,7 @@ foreach ($entries as $entry) {
 		?>
 	</ul>
 </div>
+
 
 <!-- email modal -->
 <div class="modal fade" id="emailModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
