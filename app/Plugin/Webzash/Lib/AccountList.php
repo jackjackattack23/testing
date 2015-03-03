@@ -59,6 +59,7 @@ class AccountList
 
 	var $Group = null;
 	var $Ledger = null;
+	var $approved = '1';
 
 /**
  * Initializer
