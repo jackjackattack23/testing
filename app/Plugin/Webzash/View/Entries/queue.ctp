@@ -81,36 +81,6 @@ $(document).ready(function() {
 });
 </script>
 
-<div class="row">
-	<div class="btn-group col-md-4">
-		<button type="button" class="btn btn-primary"><?php echo  __d('webzash', 'Add Entry'); ?></button>
-		<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-			<span class="caret"></span>
-			<span class="sr-only">Toggle Dropdown</span>
-		</button>
-		<ul class="dropdown-menu" role="menu">
-		<?php
-			foreach (Configure::read('Account.ET') as $entrytype) {
-				echo '<li>' . $this->Html->link($entrytype['name'], array('plugin' => 'webzash', 'controller' => 'entries', 'action' => 'add', $entrytype['label'])) . '</li>';
-			}
-		?>
-		</ul>
-	</div>
-
-	<div class="col-md-3">
-		<?php
-			$options = array();
-			$options['0'] = 'All';
-			foreach (Configure::read('Account.ET') as $entrytype) {
-				$options[h($entrytype['label'])] = h($entrytype['name']);
-			}
-		?>
-		<?php echo $this->Form->create('Entry'); ?>
-		<?php echo $this->Form->input('show', array('type' => 'select', 'options' => $options, 'label' => false, 'before' => '<div class="pull-left" id="show-label">' . __d('webzash', 'Show') . '</div>', 'div' => false)); ?>
-		<?php echo $this->Form->end(__d('webzash', '')); ?>
-	</div>
-</div>
-<br />
 <table class="stripped">
 
 <tr>
@@ -136,7 +106,7 @@ foreach ($entries as $entry) {
 	echo '<td>' . $this->Generic->showTag($entry['Entry']['tag_id']) . '</td>';
 	echo '<td>' . toCurrency('D', $entry['Entry']['dr_total']) . '</td>';
 	echo '<td>' . toCurrency('C', $entry['Entry']['cr_total']) . '</td>';
-
+	
 	echo '<td>';
 
 	/* View */
@@ -158,7 +128,7 @@ foreach ($entries as $entry) {
 	echo $this->Html->link($this->Html->tag('span', '', array('class' => 'glyphicon glyphicon-print')), '', array('escape' => false, 'onClick' => "window.open('" . $this->Html->url(array('controller' => 'entries', 'action' => 'printpreview', $entry['Entry']['id'])) . "', 'windowname','toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,copyhistory=no,width=600,height=600'); return false;"));
 
 	echo '</td>';
-
+	
 	echo '</tr>';
 }
 ?>

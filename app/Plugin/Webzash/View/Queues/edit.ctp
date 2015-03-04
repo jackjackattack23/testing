@@ -34,7 +34,7 @@
 	});
 </script>
 
-<div class="tags edit form">
+<div class="queues edit form">
 	<?php
 		echo $this->Form->create('Queue', array(
 			'inputDefaults' => array(
@@ -44,7 +44,7 @@
 			),
 		));
 
-		echo $this->Form->input('title', array('label' => __d('webzash', 'Name')));
+		echo $this->Form->input('title', array('label' => __d('webzash', 'Title')));
 		echo $this->Form->input('color', array('class' => 'pick-a-color', 'label' => __d('webzash', 'Color')));
 		echo $this->Form->input('background', array('class' => 'pick-a-color', 'label' => __d('webzash', 'Background')));
 

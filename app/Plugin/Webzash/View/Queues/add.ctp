@@ -34,7 +34,7 @@
 	});
 </script>
 
-<div class="tags add form">
+<div class="queues add form">
 	<?php
 		echo $this->Form->create('Queue', array(
 			'inputDefaults' => array(
@@ -44,7 +44,7 @@
 			),
 		));
 
-		echo $this->Form->input('name', array('label' => __d('webzash', 'Name')));
+		echo $this->Form->input('title', array('label' => __d('webzash', 'Title')));
 		echo $this->Form->input('color', array('class' => 'pick-a-color', 'label' => __d('webzash', 'Color')));
 		echo $this->Form->input('background', array('class' => 'pick-a-color', 'label' => __d('webzash', 'Background')));
 
@@ -53,7 +53,7 @@
 			'div' => false,
 			'class' => 'btn btn-primary'
 		));
-		echo $this->Html->tag('span', '', array('class' => 'link-pad'));
+		echo $this->Html->queue('span', '', array('class' => 'link-pad'));
 		echo $this->Html->link(__d('webzash', 'Cancel'), array('plugin' => 'webzash', 'controller' => 'queues', 'action' => 'index'), array('class' => 'btn btn-default'));
 		echo '</div>';
 
