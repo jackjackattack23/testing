@@ -93,7 +93,7 @@ class GenericHelper extends AppHelper {
 			'; background-color:#' . h($queue['background']) . ';">' .
 			$this->Html->link($queue['title'], array(
 					'plugin' => 'webzash',
-					'controller' => 'entries',
+					'controller' => 'entryitems',
 					'action' => 'index',
 					'queue' => $queue['id']
 				),
