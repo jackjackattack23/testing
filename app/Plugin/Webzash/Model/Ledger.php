@@ -329,7 +329,8 @@ class Ledger extends WebzashAppModel {
 		/* Debit total */
 		$dr_conditions = array(
 			'Entryitem.ledger_id' => $id,
-			'Entryitem.dc' => 'D'
+			'Entryitem.dc' => 'D',
+			'Entry.queue_id' => '1'
 		);
 		if (!is_null($start_date)) {
 			$dr_conditions['Entry.date <'] = $start_date;
@@ -358,7 +359,8 @@ class Ledger extends WebzashAppModel {
 		/* Credit total */
 		$cr_conditions = array(
 			'Entryitem.ledger_id' => $id,
-			'Entryitem.dc' => 'C'
+			'Entryitem.dc' => 'C',
+			'Entry.queue_id' => '1'
 		);
 		if (!is_null($start_date)) {
 			$cr_conditions['Entry.date <'] = $start_date;
@@ -456,7 +458,8 @@ class Ledger extends WebzashAppModel {
 		/* Debit total */
 		$dr_conditions = array(
 			'Entryitem.ledger_id' => $id,
-			'Entryitem.dc' => 'D'
+			'Entryitem.dc' => 'D',
+			'Entry.queue_id' => '1'
 		);
 		if (!is_null($start_date)) {
 			$dr_conditions['Entry.date >='] = $start_date;
@@ -487,7 +490,8 @@ class Ledger extends WebzashAppModel {
 		/* Credit total */
 		$cr_conditions = array(
 			'Entryitem.ledger_id' => $id,
-			'Entryitem.dc' => 'C'
+			'Entryitem.dc' => 'C',
+			'Entry.queue_id' => '1'
 		);
 		if (!is_null($start_date)) {
 			$cr_conditions['Entry.date >='] = $start_date;
@@ -569,7 +573,8 @@ class Ledger extends WebzashAppModel {
 		$dr_conditions = array(
 			'Entryitem.ledger_id' => $id,
 			'Entryitem.dc' => 'D',
-			'Entryitem.reconciliation_date' => null
+			'Entryitem.reconciliation_date' => null,
+			'Entry.queue_id' => '1'
 		);
 		if (!is_null($start_date)) {
 			$dr_conditions['Entry.date >='] = $start_date;
@@ -601,7 +606,8 @@ class Ledger extends WebzashAppModel {
 		$cr_conditions = array(
 			'Entryitem.ledger_id' => $id,
 			'Entryitem.dc' => 'C',
-			'Entryitem.reconciliation_date' => null
+			'Entryitem.reconciliation_date' => null,
+			'Entry.queue_id' => '1'
 		);
 		if (!is_null($start_date)) {
 			$cr_conditions['Entry.date >='] = $start_date;

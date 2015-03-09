@@ -58,7 +58,7 @@ class AccountList
 	var $affects_gross = -1;
 
 	var $Group = null;
-	var $Ledger = null;
+	var $Ledger = null;	
 
 /**
  * Initializer
@@ -91,7 +91,7 @@ class AccountList
 		$this->cr_total = 0;
 		$this->cl_total = 0;
 		$this->cl_total_dc = 'D';
-
+		
 		/* If affects_gross set, add sub-ledgers to only affects_gross == 0 */
 		if ($this->affects_gross == 1) {
 			/* Skip adding sub-ledgers if affects_gross is set and value == 1 */
@@ -111,7 +111,7 @@ class AccountList
  */
 	function add_sub_groups()
 	{
-		$conditions = array('Group.parent_id' => $this->id);
+		$conditions = (array('Group.parent_id' => $this->id));
 
 		/* Check if net or gross restriction is set */
 		if ($this->affects_gross == 0) {
