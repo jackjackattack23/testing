@@ -19,3 +19,7 @@ INSERT INTO `%_PREFIX_%entrytypes` (`id`, `label`, `name`, `description`, `base_
 INSERT INTO `%_PREFIX_%entrytypes` (`id`, `label`, `name`, `description`, `base_type`, `numbering`, `prefix`, `suffix`, `zero_padding`, `restriction_bankcash`) VALUES (2, 'payment', 'Payment', 'Payment made from Bank account or Cash account', 1, 1, '', '', 0, 3);
 INSERT INTO `%_PREFIX_%entrytypes` (`id`, `label`, `name`, `description`, `base_type`, `numbering`, `prefix`, `suffix`, `zero_padding`, `restriction_bankcash`) VALUES (3, 'contra', 'Contra', 'Transfer between Bank account and Cash account', 1, 1, '', '', 0, 4);
 INSERT INTO `%_PREFIX_%entrytypes` (`id`, `label`, `name`, `description`, `base_type`, `numbering`, `prefix`, `suffix`, `zero_padding`, `restriction_bankcash`) VALUES (4, 'journal', 'Journal', 'Transfer between Non Bank account and Cash account', 1, 1, '', '', 0, 5);
+
+INSERT INTO `%_PREFIX_%queues` VALUES(1, 'approved', 'Approved', 'Approved Entry', 'FFFFFF', '009933');
+INSERT INTO `%_PREFIX_%queues` VALUES(2, 'rejected', 'Rejected', 'Rejected Entry', 'FFFFFF', 'FF0000');
+INSERT INTO `%_PREFIX_%queues` VALUES(3, 'pending', 'Pending', 'Pending Entry', '000000', 'FFFF00');

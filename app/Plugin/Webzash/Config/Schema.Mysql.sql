@@ -66,9 +66,23 @@ COLLATE=utf8_unicode_ci,
 AUTO_INCREMENT=1,
 ENGINE=InnoDB;
 
+CREATE TABLE `%_PREFIX_%queues` (
+	`id` bigint(18) NOT NULL,
+  	`label` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  	`title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  	`description` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  	`color` char(6) COLLATE utf8_unicode_ci NOT NULL,
+  	`background` char(6) COLLATE utf8_unicode_ci NOT NULL,
+  	PRIMARY KEY (`id`),
+  	KEY `id` (`id`)
+) DEFAULT CHARSET=utf8, 
+COLLATE=utf8_unicode_ci,
+ENGINE=InnoDB;
+
 CREATE TABLE `%_PREFIX_%entries` (
 	`id` bigint(18) NOT NULL AUTO_INCREMENT,
 	`tag_id` bigint(18) DEFAULT NULL,
+	`queue_id` int(1) NOT NULL,
 	`entrytype_id` bigint(18) NOT NULL,
 	`number` bigint(18) DEFAULT NULL,
 	`date` date NOT NULL,
@@ -79,6 +93,7 @@ CREATE TABLE `%_PREFIX_%entries` (
 	UNIQUE KEY `unique_id` (`id`),
 	KEY `id` (`id`),
 	KEY `tag_id` (`tag_id`),
+	KEY `queue_id` (`queue_id`),
 	KEY `entrytype_id` (`entrytype_id`)
 ) DEFAULT CHARSET=utf8,
 COLLATE=utf8_unicode_ci,
