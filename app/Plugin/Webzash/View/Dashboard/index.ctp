@@ -134,10 +134,16 @@ if (!extension_loaded('bcmath')) {
 						echo 'Nothing here.';
 					} else {
 						echo '<table>';
+						echo '<tr>';
+							  echo '<td><strong>' . 'User' . '</strong></td>';
+							  echo '<td><strong>' . 'Date of Change' . '</strong></td>';
+							  echo '<td><strong>' . 'Description' . '</strong></td>';
+						echo '</tr>';
 						foreach ($logs as $row => $data) {
 							echo '<tr>';
-							echo '<td>' . dateFromSql($data['Log']['date']) . '</td>';
-							echo '<td>' . h($data['Log']['message']) . '</td>';
+							  echo '<td>' . h($data['Log']['user']) . '</td>';
+							  echo '<td>' . h($data['Log']['date']) . '</td>';
+							  echo '<td>' . h($data['Log']['message']) . '</td>';
 							echo '</tr>';
 						}
 						echo '</table>';
