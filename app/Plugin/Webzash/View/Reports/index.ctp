@@ -62,5 +62,19 @@
 			<div class="reports-desc">
 			</div>
 		</div>
+        <div class="reports-container">
+          <div class="reports-title">
+              <?php echo $this->Html->link(__d('webzash', 'Summary of Accounts - CPD'), array('plugin' => 'webzash', 'controller' => 'reports', 'action' => 'cpdsummary')); ?>
+          </div>
+          <div class="reports-desc">
+          </div>
+		</div>
+        <div class="reports-container">
+          <div class="reports-title">
+              <?php echo $this->Html->link(__d('webzash', 'Summary of Accounts - ITEC'), array('plugin' => 'webzash', 'controller' => 'reports', 'action' => 'itecsummary')); ?>
+          </div>
+          <div class="reports-desc">
+          </div>
+		</div>
 	</div>
 </div>

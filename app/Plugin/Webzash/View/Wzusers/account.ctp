@@ -51,14 +51,15 @@
 			));
 
 			echo $this->Form->label('active', __d('webzash', 'Currently active account : "%s"', h($curActiveAccount)));
+			echo '<hr/>';
 			echo $this->Form->input('wzaccount_id', array(
 				'type' => 'select',
 				'options' => $wzaccounts,
-				'label' => __d('webzash', 'Select account'),
+				'label' => __d('webzash', 'Select an account'),
 				'multiple' => false,
 				'afterInput' => '<span class="help-block">' . __d('webzash', 'Note : If you wish to use multiple accounts simultaneously, please use different browsers for each. Also, please select (NONE) if you wish to deactivate all accounts.') . '</span>'
 			));
-
+			
 			echo '<div class="form-group">';
 			echo $this->Form->submit(__d('webzash', 'Activate'), array(
 				'div' => false,

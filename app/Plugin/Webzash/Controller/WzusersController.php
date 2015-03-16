@@ -1179,7 +1179,7 @@ class WzusersController extends WebzashAppController {
  */
 	public function account() {
 
-		$this->set('title_for_layout', __d('webzash', 'Select account to activate'));
+		$this->set('title_for_layout', __d('webzash', 'Select an account to activate'));
 
 		$this->layout = 'default';
 

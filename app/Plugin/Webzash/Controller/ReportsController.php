@@ -57,6 +57,491 @@ class ReportsController extends WebzashAppController {
 	}
 
 /**
+ * balancesheet method for all CPD accounts
+ *
+ * @return void
+ */
+	public function cpdsummary() {
+
+		$this->set('title_for_layout', __d('webzash', 'Summary of CPD Accounts'));
+
+		/* POST */
+		if ($this->request->is('post')) {
+			if ($this->request->data['Balancesheet']['opening'] == 1) {
+				return $this->redirect(array(
+					'plugin' => 'webzash',
+					'controller' => 'reports',
+					'action' => 'balancesheet',
+					'options' => 1,
+					'opening' => 1,
+				));
+			} else {
+				if (!empty($this->request->data['Balancesheet']['startdate']) || !empty($this->request->data['Balancesheet']['enddate'])) {
+					return $this->redirect(array(
+						'plugin' => 'webzash',
+						'controller' => 'reports',
+						'action' => 'balancesheet',
+						'options' => 1,
+						'opening' => 0,
+						'startdate' => $this->request->data['Balancesheet']['startdate'],
+						'enddate' => $this->request->data['Balancesheet']['enddate']
+					));
+				} else {
+					return $this->redirect(array(
+						'plugin' => 'webzash',
+						'controller' => 'reports',
+						'action' => 'balancesheet'
+					));
+				}
+			}
+		}
+
+		$only_opening = false;
+		$startdate = null;
+		$enddate = null;
+
+		if (empty($this->passedArgs['options'])) {
+			$this->set('options', false);
+
+			/* Sub-title*/
+			$this->set('subtitle', __d('webzash', 'Closing Balance Sheet as on ') .
+				dateFromSql(Configure::read('Account.enddate')));
+		} else {
+			$this->set('options', true);
+			if (!empty($this->passedArgs['opening'])) {
+				$only_opening = true;
+				$this->request->data['Balancesheet']['opening'] = '1';
+
+				/* Sub-title*/
+				$this->set('subtitle', __d('webzash', 'Opening Balance Sheet as on ') .
+					dateFromSql(Configure::read('Account.startdate')));
+			} else {
+				if (!empty($this->passedArgs['startdate'])) {
+					$startdate = dateToSQL($this->passedArgs['startdate']);
+					$this->request->data['Balancesheet']['startdate'] =
+						$this->passedArgs['startdate'];
+				}
+				if (!empty($this->passedArgs['enddate'])) {
+					$enddate = dateToSQL($this->passedArgs['enddate']);
+					$this->request->data['Balancesheet']['enddate'] =
+						$this->passedArgs['enddate'];
+				}
+
+				/* Sub-title*/
+				if (!empty($this->passedArgs['startdate']) &&
+					!empty($this->passedArgs['enddate'])) {
+					$this->set('subtitle', __d('webzash', 'Balance Sheet from ' .
+						dateFromSql(dateToSQL($this->passedArgs['startdate'])) . ' to ' .
+						dateFromSql(dateToSQL($this->passedArgs['enddate']))
+					));
+				} else if (!empty($this->passedArgs['startdate'])) {
+					$this->set('subtitle', __d('webzash', 'Balance Sheet from ' .
+						dateFromSql(dateToSQL($this->passedArgs['startdate'])) . ' to ' .
+						dateFromSql(Configure::read('Account.enddate'))
+					));
+				} else if (!empty($this->passedArgs['enddate'])) {
+					$this->set('subtitle', __d('webzash', 'Balance Sheet from ' .
+						dateFromSql(Configure::read('Account.startdate')) . ' to ' .
+						dateFromSql(dateToSQL($this->passedArgs['enddate']))
+					));
+				}
+			}
+		}
+
+		/**********************************************************************/
+		/*********************** BALANCESHEET CALCULATIONS ********************/
+		/**********************************************************************/
+
+		/* Liabilities */
+		$liabilities = new AccountList();
+		$liabilities->Group = &$this->Group;
+		$liabilities->Ledger = &$this->Ledger;
+		$liabilities->only_opening = $only_opening;
+		$liabilities->start_date = $startdate;
+		$liabilities->end_date = $enddate;
+		$liabilities->affects_gross = -1;
+		$liabilities->start(2);
+
+		$bsheet['liabilities'] = $liabilities;
+
+		$bsheet['liabilities_total'] = 0;
+		if ($liabilities->cl_total_dc == 'C') {
+			$bsheet['liabilities_total'] = $liabilities->cl_total;
+		} else {
+			$bsheet['liabilities_total'] = calculate($liabilities->cl_total, 0, 'n');
+		}
+
+		/* Assets */
+		$assets = new AccountList();
+		$assets->Group = &$this->Group;
+		$assets->Ledger = &$this->Ledger;
+		$assets->only_opening = $only_opening;
+		$assets->start_date = $startdate;
+		$assets->end_date = $enddate;
+		$assets->affects_gross = -1;
+		$assets->start(1);
+
+		$bsheet['assets'] = $assets;
+
+		$bsheet['assets_total'] = 0;
+		if ($assets->cl_total_dc == 'D') {
+			$bsheet['assets_total'] = $assets->cl_total;
+		} else {
+			$bsheet['assets_total'] = calculate($assets->cl_total, 0, 'n');
+		}
+
+		/* Profit and loss calculations */
+		$income = new AccountList();
+		$income->Group = &$this->Group;
+		$income->Ledger = &$this->Ledger;
+		$income->only_opening = $only_opening;
+		$income->start_date = $startdate;
+		$income->end_date = $enddate;
+		$income->affects_gross = -1;
+		$income->start(3);
+
+		$expense = new AccountList();
+		$expense->Group = &$this->Group;
+		$expense->Ledger = &$this->Ledger;
+		$expense->only_opening = $only_opening;
+		$expense->start_date = $startdate;
+		$expense->end_date = $enddate;
+		$expense->affects_gross = -1;
+		$expense->start(4);
+
+		if ($income->cl_total_dc == 'C') {
+			$income_total = $income->cl_total;
+		} else {
+			$income_total = calculate($income->cl_total, 0, 'n');
+		}
+		if ($expense->cl_total_dc == 'D') {
+			$expense_total = $expense->cl_total;
+		} else {
+			$expense_total = calculate($expense->cl_total, 0, 'n');
+		}
+
+		$bsheet['pandl'] = calculate($income_total, $expense_total, '-');
+
+		/* Difference in opening balance */
+		$bsheet['opdiff'] = $this->Ledger->getOpeningDiff();
+		if (calculate($bsheet['opdiff']['opdiff_balance'], 0, '==')) {
+			$bsheet['is_opdiff'] = false;
+		} else {
+			$bsheet['is_opdiff'] = true;
+		}
+
+		/**** Final balancesheet total ****/
+		$bsheet['final_liabilities_total'] = $bsheet['liabilities_total'];
+		$bsheet['final_assets_total'] = $bsheet['assets_total'];
+
+		/* If net profit add to liabilities, if net loss add to assets */
+		if (calculate($bsheet['pandl'], 0, '>=')) {
+			$bsheet['final_liabilities_total'] = calculate(
+				$bsheet['final_liabilities_total'],
+				$bsheet['pandl'], '+');
+		} else {
+			$positive_pandl = calculate($bsheet['pandl'], 0, 'n');
+			$bsheet['final_assets_total'] = calculate(
+				$bsheet['final_assets_total'],
+				$positive_pandl, '+');
+		}
+
+		/**
+		 * If difference in opening balance is Dr then subtract from
+		 * assets else subtract from liabilities
+		 */
+		if ($bsheet['is_opdiff']) {
+			if ($bsheet['opdiff']['opdiff_balance_dc'] == 'D') {
+				$bsheet['final_assets_total'] = calculate(
+					$bsheet['final_assets_total'],
+					$bsheet['opdiff']['opdiff_balance'], '+');
+			} else {
+				$bsheet['final_liabilities_total'] = calculate(
+					$bsheet['final_liabilities_total'],
+					$bsheet['opdiff']['opdiff_balance'], '+');
+			}
+		}
+
+		$this->set('bsheet', $bsheet);
+
+		/* Download report */
+		if (isset($this->passedArgs['downloadcsv'])) {
+			$this->layout = false;
+			$view = new View($this, false);
+			$response =  $view->render('Reports/downloadcsv/cpdsummary');
+			$this->response->body($response);
+			$this->response->type('text/csv');
+			$this->response->download('cpdsummary.csv');
+			return $this->response;
+		}
+
+		/* Download report */
+		if (isset($this->passedArgs['downloadxls'])) {
+			$this->layout = 'xls';
+			$view = new View($this, false);
+			$response =  $view->render('Reports/downloadxls/cpdsummary');
+			$this->response->body($response);
+			$this->response->type('application/vnd.ms-excel');
+			$this->response->download('cpdsummary.xls');
+			return $this->response;
+		}
+
+		/* Print report */
+		if (isset($this->passedArgs['print'])) {
+			$this->layout = 'print';
+			$view = new View($this, false);
+			$response =  $view->render('Reports/print/cpdsummary');
+			$this->response->body($response);
+			return $this->response;
+		}
+
+		return;
+	}
+
+/**
+ * balancesheet method for all ITEC accounts
+ *
+ * @return void
+ */
+	public function itecsummary() {
+
+		$this->set('title_for_layout', __d('webzash', 'Summary of ITEC Accounts'));
+
+		/* POST */
+		if ($this->request->is('post')) {
+			if ($this->request->data['Balancesheet']['opening'] == 1) {
+				return $this->redirect(array(
+					'plugin' => 'webzash',
+					'controller' => 'reports',
+					'action' => 'balancesheet',
+					'options' => 1,
+					'opening' => 1,
+				));
+			} else {
+				if (!empty($this->request->data['Balancesheet']['startdate']) || !empty($this->request->data['Balancesheet']['enddate'])) {
+					return $this->redirect(array(
+						'plugin' => 'webzash',
+						'controller' => 'reports',
+						'action' => 'balancesheet',
+						'options' => 1,
+						'opening' => 0,
+						'startdate' => $this->request->data['Balancesheet']['startdate'],
+						'enddate' => $this->request->data['Balancesheet']['enddate']
+					));
+				} else {
+					return $this->redirect(array(
+						'plugin' => 'webzash',
+						'controller' => 'reports',
+						'action' => 'balancesheet'
+					));
+				}
+			}
+		}
+
+		$only_opening = false;
+		$startdate = null;
+		$enddate = null;
+
+		if (empty($this->passedArgs['options'])) {
+			$this->set('options', false);
+
+			/* Sub-title*/
+			$this->set('subtitle', __d('webzash', 'Closing Balance Sheet as on ') .
+				dateFromSql(Configure::read('Account.enddate')));
+		} else {
+			$this->set('options', true);
+			if (!empty($this->passedArgs['opening'])) {
+				$only_opening = true;
+				$this->request->data['Balancesheet']['opening'] = '1';
+
+				/* Sub-title*/
+				$this->set('subtitle', __d('webzash', 'Opening Balance Sheet as on ') .
+					dateFromSql(Configure::read('Account.startdate')));
+			} else {
+				if (!empty($this->passedArgs['startdate'])) {
+					$startdate = dateToSQL($this->passedArgs['startdate']);
+					$this->request->data['Balancesheet']['startdate'] =
+						$this->passedArgs['startdate'];
+				}
+				if (!empty($this->passedArgs['enddate'])) {
+					$enddate = dateToSQL($this->passedArgs['enddate']);
+					$this->request->data['Balancesheet']['enddate'] =
+						$this->passedArgs['enddate'];
+				}
+
+				/* Sub-title*/
+				if (!empty($this->passedArgs['startdate']) &&
+					!empty($this->passedArgs['enddate'])) {
+					$this->set('subtitle', __d('webzash', 'Balance Sheet from ' .
+						dateFromSql(dateToSQL($this->passedArgs['startdate'])) . ' to ' .
+						dateFromSql(dateToSQL($this->passedArgs['enddate']))
+					));
+				} else if (!empty($this->passedArgs['startdate'])) {
+					$this->set('subtitle', __d('webzash', 'Balance Sheet from ' .
+						dateFromSql(dateToSQL($this->passedArgs['startdate'])) . ' to ' .
+						dateFromSql(Configure::read('Account.enddate'))
+					));
+				} else if (!empty($this->passedArgs['enddate'])) {
+					$this->set('subtitle', __d('webzash', 'Balance Sheet from ' .
+						dateFromSql(Configure::read('Account.startdate')) . ' to ' .
+						dateFromSql(dateToSQL($this->passedArgs['enddate']))
+					));
+				}
+			}
+		}
+
+		/**********************************************************************/
+		/*********************** BALANCESHEET CALCULATIONS ********************/
+		/**********************************************************************/
+
+		/* Liabilities */
+		$liabilities = new AccountList();
+		$liabilities->Group = &$this->Group;
+		$liabilities->Ledger = &$this->Ledger;
+		$liabilities->only_opening = $only_opening;
+		$liabilities->start_date = $startdate;
+		$liabilities->end_date = $enddate;
+		$liabilities->affects_gross = -1;
+		$liabilities->start(2);
+
+		$bsheet['liabilities'] = $liabilities;
+
+		$bsheet['liabilities_total'] = 0;
+		if ($liabilities->cl_total_dc == 'C') {
+			$bsheet['liabilities_total'] = $liabilities->cl_total;
+		} else {
+			$bsheet['liabilities_total'] = calculate($liabilities->cl_total, 0, 'n');
+		}
+
+		/* Assets */
+		$assets = new AccountList();
+		$assets->Group = &$this->Group;
+		$assets->Ledger = &$this->Ledger;
+		$assets->only_opening = $only_opening;
+		$assets->start_date = $startdate;
+		$assets->end_date = $enddate;
+		$assets->affects_gross = -1;
+		$assets->start(1);
+
+		$bsheet['assets'] = $assets;
+
+		$bsheet['assets_total'] = 0;
+		if ($assets->cl_total_dc == 'D') {
+			$bsheet['assets_total'] = $assets->cl_total;
+		} else {
+			$bsheet['assets_total'] = calculate($assets->cl_total, 0, 'n');
+		}
+
+		/* Profit and loss calculations */
+		$income = new AccountList();
+		$income->Group = &$this->Group;
+		$income->Ledger = &$this->Ledger;
+		$income->only_opening = $only_opening;
+		$income->start_date = $startdate;
+		$income->end_date = $enddate;
+		$income->affects_gross = -1;
+		$income->start(3);
+
+		$expense = new AccountList();
+		$expense->Group = &$this->Group;
+		$expense->Ledger = &$this->Ledger;
+		$expense->only_opening = $only_opening;
+		$expense->start_date = $startdate;
+		$expense->end_date = $enddate;
+		$expense->affects_gross = -1;
+		$expense->start(4);
+
+		if ($income->cl_total_dc == 'C') {
+			$income_total = $income->cl_total;
+		} else {
+			$income_total = calculate($income->cl_total, 0, 'n');
+		}
+		if ($expense->cl_total_dc == 'D') {
+			$expense_total = $expense->cl_total;
+		} else {
+			$expense_total = calculate($expense->cl_total, 0, 'n');
+		}
+
+		$bsheet['pandl'] = calculate($income_total, $expense_total, '-');
+
+		/* Difference in opening balance */
+		$bsheet['opdiff'] = $this->Ledger->getOpeningDiff();
+		if (calculate($bsheet['opdiff']['opdiff_balance'], 0, '==')) {
+			$bsheet['is_opdiff'] = false;
+		} else {
+			$bsheet['is_opdiff'] = true;
+		}
+
+		/**** Final balancesheet total ****/
+		$bsheet['final_liabilities_total'] = $bsheet['liabilities_total'];
+		$bsheet['final_assets_total'] = $bsheet['assets_total'];
+
+		/* If net profit add to liabilities, if net loss add to assets */
+		if (calculate($bsheet['pandl'], 0, '>=')) {
+			$bsheet['final_liabilities_total'] = calculate(
+				$bsheet['final_liabilities_total'],
+				$bsheet['pandl'], '+');
+		} else {
+			$positive_pandl = calculate($bsheet['pandl'], 0, 'n');
+			$bsheet['final_assets_total'] = calculate(
+				$bsheet['final_assets_total'],
+				$positive_pandl, '+');
+		}
+
+		/**
+		 * If difference in opening balance is Dr then subtract from
+		 * assets else subtract from liabilities
+		 */
+		if ($bsheet['is_opdiff']) {
+			if ($bsheet['opdiff']['opdiff_balance_dc'] == 'D') {
+				$bsheet['final_assets_total'] = calculate(
+					$bsheet['final_assets_total'],
+					$bsheet['opdiff']['opdiff_balance'], '+');
+			} else {
+				$bsheet['final_liabilities_total'] = calculate(
+					$bsheet['final_liabilities_total'],
+					$bsheet['opdiff']['opdiff_balance'], '+');
+			}
+		}
+
+		$this->set('bsheet', $bsheet);
+
+		/* Download report */
+		if (isset($this->passedArgs['downloadcsv'])) {
+			$this->layout = false;
+			$view = new View($this, false);
+			$response =  $view->render('Reports/downloadcsv/itecsummary');
+			$this->response->body($response);
+			$this->response->type('text/csv');
+			$this->response->download('itecsummary.csv');
+			return $this->response;
+		}
+
+		/* Download report */
+		if (isset($this->passedArgs['downloadxls'])) {
+			$this->layout = 'xls';
+			$view = new View($this, false);
+			$response =  $view->render('Reports/downloadxls/itecsummary');
+			$this->response->body($response);
+			$this->response->type('application/vnd.ms-excel');
+			$this->response->download('itecsummary.xls');
+			return $this->response;
+		}
+
+		/* Print report */
+		if (isset($this->passedArgs['print'])) {
+			$this->layout = 'print';
+			$view = new View($this, false);
+			$response =  $view->render('Reports/print/itecsummary');
+			$this->response->body($response);
+			return $this->response;
+		}
+
+		return;
+	}
+
+
+/**
  * balancesheet method
  *
  * @return void
