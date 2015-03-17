@@ -1918,6 +1918,14 @@ class ReportsController extends WebzashAppController {
 		if ($this->action === 'reconciliation') {
 			return $this->Permission->is_allowed('access reports');
 		}
+		
+		if ($this->action === 'cpdsummary') {
+			return $this->Permission->is_allowed('access summaries');
+		}
+		
+		if ($this->action === 'itecsummary') {
+			return $this->Permission->is_allowed('access summaries');
+		}
 
 		return parent::isAuthorized($user);
 	}

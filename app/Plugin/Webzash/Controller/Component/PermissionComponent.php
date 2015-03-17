@@ -78,6 +78,7 @@ class PermissionComponent extends Component {
 			'delete tag',
 
 			'access reports',
+			'access summaries',
 
 			'view log',
 			/*'clear log',*/

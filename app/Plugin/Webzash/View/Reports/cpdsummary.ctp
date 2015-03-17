@@ -177,587 +177,587 @@ $(document).ready(function() {
   </thead>
   <tr>
     <td>Adirondack Community College (ADI)</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td><?php echo '<td>' . toCurrency($bsheet['dc'], $op['amount']). '</td>'; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo '<td>' . toCurrency('D', $bsheet['final_assets_total']) . '</td>'; ?></td>
+    <td><?php echo ''; ?></td>
   </tr>
   <tr>
     <td>University at Albany (ALB)</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
   </tr>
   <tr>
     <td>Alfred State, Technology (ALF)</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
   </tr>
   <tr>
     <td>Alfred, Ceramics (CER)</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
   </tr>
   <tr>
     <td>Binghamton (BIN)</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
   </tr>
   <tr>
     <td>Brockport (BRO)</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
   </tr>
   <tr>
     <td>Broome (BRM)</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
   </tr>
   <tr>
     <td>Buffalo State College(BUC)</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
   </tr>
   <tr>
     <td>University of Buffalo (BUF)</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
   </tr>
   <tr>
     <td>Canton (CAN)</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
   </tr>
   <tr>
     <td>Cayuga (CAY)</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
   </tr>
   <tr>
     <td>Clinton (CLI)</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
   </tr>
   <tr>
     <td>Cobleskill (COB)</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
   </tr>
   <tr>
     <td>Columbia-Greene (CGC)</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
   </tr>
   <tr>
     <td>Cornell, Agriculture &amp; Life Sciences (CNL-A)</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
   </tr>
   <tr>
     <td>Cornell, Human Ecology (CNL-E)</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
   </tr>
   <tr>
     <td>Cornell, Veterinary Medicine (CNL-V)</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
   </tr>
   <tr>
     <td>Cornell, Industrial and Labor Relations (CNL-R)</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
   </tr>
   <tr>
     <td>Corning (CNG)</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
   </tr>
   <tr>
     <td>Cortland (COR)</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
   </tr>
   <tr>
     <td>Delhi (DEL)</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
   </tr>
   <tr>
     <td>Downstate Medical Center (BRK)</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
   </tr>
   <tr>
     <td>Dutchess (DUT)</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
   </tr>
   <tr>
     <td>Empire State College (ESC)</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
   </tr>
   <tr>
     <td>Environmental Science &amp; Forestry (ESF)</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
   </tr>
   <tr>
     <td>Erie (ERI)</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
   </tr>
   <tr>
     <td>Farmingdale (FAR)</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
   </tr>
   <tr>
     <td>Fashion Institute(FIT)</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
   </tr>
   <tr>
     <td>Finger Lakes (FLC)</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
   </tr>
   <tr>
     <td>Fredonia (FRE)</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
   </tr>
   <tr>
     <td>Fulton-Montgomery (FMC)</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
   </tr>
   <tr>
     <td>Genesee (GNC)</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
   </tr>
   <tr>
     <td>Geneseo (GEN)</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
   </tr>
   <tr>
     <td>Herkimer (HER)</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
   </tr>
   <tr>
     <td>Hudson Valley (HVC)</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
   </tr>
   <tr>
     <td>Jamestown (JAM)</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
   </tr>
   <tr>
     <td>Jefferson (JEF)</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
   </tr>
   <tr>
     <td>Maritime (MAR)</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
   </tr>
   <tr>
     <td>Mohawk Valley (MVC)</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
   </tr>
   <tr>
     <td>Monroe (MON)</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
   </tr>
   <tr>
     <td>Morrisville (MOR)</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
   </tr>
   <tr>
     <td>Nassau (NAS)</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
   </tr>
   <tr>
     <td>New Paltz (NEW)</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
   </tr>
   <tr>
     <td>Niagara (NIA)</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
   </tr>
   <tr>
     <td>North Country (NOR)</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
   </tr>
   <tr>
     <td>Old Westbury (OLD)</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
   </tr>
   <tr>
     <td>Oneonta (ONE)</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
   </tr>
   <tr>
     <td>Onondaga (ONO)</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
   </tr>
   <tr>
     <td>Optometry (OPT)</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
   </tr>
   <tr>
     <td>Orange (ORA)</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
   </tr>
   <tr>
     <td>Oswego (OSW)</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
   </tr>
   <tr>
     <td>Plattsburgh (PLA)</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
   </tr>
   <tr>
     <td>Potsdam (POT)</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
   </tr>
   <tr>
     <td>Purchase (PUR)</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
   </tr>
   <tr>
     <td>Research Foundation (RF)</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
   </tr>
   <tr>
     <td>Rockland (ROC)</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
   </tr>
   <tr>
     <td>Schenectady (SCH)</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
   </tr>
   <tr>
     <td>Stony Brook (STB)</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
   </tr>
   <tr>
     <td>Suffolk (SUF)</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
   </tr>
   <tr>
     <td>Sullivan (SUL)</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
   </tr>
   <tr>
     <td>System Administration (CEN)</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
   </tr>
   <tr>
     <td>Tompkins (TCC)</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
   </tr>
   <tr>
     <td>Ulster (ULS)</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
   </tr>
   <tr>
     <td>Upstate Medical University (SYR)</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
   </tr>
   <tr>
     <td><strong>Totals</strong></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
   </tr>
 </table>
