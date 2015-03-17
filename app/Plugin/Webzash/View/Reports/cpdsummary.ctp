@@ -177,11 +177,11 @@ $(document).ready(function() {
   </thead>
   <tr>
     <td>Adirondack Community College (ADI)</td>
-    <td><?php echo '<td>' . toCurrency($bsheet['dc'], $op['amount']). '</td>'; ?></td>
     <td><?php echo ''; ?></td>
     <td><?php echo ''; ?></td>
     <td><?php echo ''; ?></td>
-    <td><?php echo '<td>' . toCurrency('D', $bsheet['final_assets_total']) . '</td>'; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo toCurrency('D', $bsheet['final_assets_total']); ?></td>
     <td><?php echo ''; ?></td>
   </tr>
   <tr>
