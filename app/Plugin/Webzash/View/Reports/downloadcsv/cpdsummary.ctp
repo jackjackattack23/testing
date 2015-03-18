@@ -73,98 +73,607 @@ function print_space($count)
 ?>
 
 <?php
-	/* Show difference in opening balance */
-	if ($bsheet['is_opdiff']) {
-		echo '"' .
-			__d('webzash', 'There is a difference in opening balance of ') .
-			toCurrency($bsheet['opdiff']['opdiff_balance_dc'], $bsheet['opdiff']['opdiff_balance']) .
-			'"' .
-			"\n";
-			"\n";
-	}
-
-	/* Show difference in liabilities and assets total */
-	if (calculate($bsheet['final_liabilities_total'], $bsheet['final_assets_total'], '!=')) {
-		$final_total_diff = calculate($bsheet['final_liabilities_total'], $bsheet['final_assets_total'], '-');
-		echo '"' .
-			__d('webzash', 'There is a difference in Total Liabilities and Total Assets of ') .
-			toCurrency('X', $final_total_diff) .
-			'"' .
-			"\n";
-			"\n";
-	}
 
 	echo $subtitle;
 	echo "\n";
 	echo "\n";
 
-	/**************** Assets ****************/
-	echo '"' . __d('webzash', 'Assets') . '",';
-	echo '"' . __d('webzash', '(Dr) Amount') . '"';
+	echo '"' . __d('webzash', 'Account') . '",';
+	echo '"' . __d('webzash', 'Initial Point Allocation') . '",';
+	echo '"' . __d('webzash', 'Additional Points Purchased') . '",';
+	echo '"' . __d('webzash', 'Total Points Available') . '",';
+	echo '"' . __d('webzash', 'CPD Points Used') . '",';
+	echo '"' . __d('webzash', 'Available Points Balance') . '",';
+	echo '"' . __d('webzash', 'Remaining Original Points') . '",';
 	echo "\n";
-	echo account_st_short($bsheet['assets'], $c = -1, $this, 'D');
+	
+	echo '"' . __d('webzash', 'Adirondack Community College (ADI)') . ',';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
 	echo "\n";
-
-	/* Assets Total */
-	echo '"' . __d('webzash', 'Total Assets') . '",';
-	echo '"' . toCurrency('D', $bsheet['assets_total']) . '"';
+	
+	echo '"' . __d('webzash', 'University at Albany (ALB)') . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
 	echo "\n";
-
-	/* Net loss */
-	if (calculate($bsheet['pandl'], 0, '>=')) {
-		/* Do nothing */
-	} else {
-		echo '"' . __d('webzash', 'Profit & Loss Account (Net Loss)') . '",';
-		$positive_pandl = calculate($bsheet['pandl'], 0, 'n');
-		echo '"' . toCurrency('D', $positive_pandl) . '"';
-		echo "\n";
-	}
-
-	if ($bsheet['is_opdiff']) {
-		/* If diff in opening balance is Dr */
-		if ($bsheet['opdiff']['opdiff_balance_dc'] == 'D') {
-			echo '"' . __d('webzash', 'Diff in O/P Balance') . '",';
-			echo '"' . toCurrency('D', $bsheet['opdiff']['opdiff_balance']) . '"';
-			echo "\n";
-		}
-	}
-
+	
+	echo '"' . __d('webzash', 'Alfred State, Technology (ALF)') . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo "\n";
+		
+	echo '"' . __d('webzash', 'Alfred, Ceramics (CER)') . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo "\n";
+	
+	echo '"' . __d('webzash', 'Binghamton (BIN)') . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo "\n";
+	
+	echo '"' . __d('webzash', 'Brockport (BRO)') . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo "\n";	
+	
+	echo '"' . __d('webzash', 'Broome (BRM)') . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo "\n";	
+	
+	echo '"' . __d('webzash', 'Buffalo State College(BUC)') . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo "\n";	
+	
+	echo '"' . __d('webzash', 'University of Buffalo (BUF)') . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo "\n";	
+	
+	echo '"' . __d('webzash', 'Canton (CAN)') . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo "\n";	
+	
+	echo '"' . __d('webzash', 'Cayuga (CAY)') . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo "\n";	
+	
+	echo '"' . __d('webzash', 'Clinton (CLI)') . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo "\n";	
+	
+	echo '"' . __d('webzash', 'Cobleskill (COB)') . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo "\n";	
+	
+	echo '"' . __d('webzash', 'Columbia-Greene (CGC)') . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo "\n";	
+	
+	echo '"' . __d('webzash', 'Cornell, Agriculture &amp; Life Sciences (CNL-A)') . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo "\n";	
+	
+	echo '"' . __d('webzash', 'Cornell, Human Ecology (CNL-E)') . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo "\n";	
+	
+	echo '"' . __d('webzash', 'Cornell, Veterinary Medicine (CNL-V)') . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo "\n";	
+	
+	echo '"' . __d('webzash', 'Cornell, Industrial and Labor Relations (CNL-R)') . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo "\n";	
+	
+	echo '"' . __d('webzash', 'Corning (CNG)') . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo "\n";	
+	
+	echo '"' . __d('webzash', 'Cortland (COR)') . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo "\n";	
+	
+	echo '"' . __d('webzash', 'Delhi (DEL)') . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo "\n";	
+	
+	echo '"' . __d('webzash', 'Downstate Medical Center (BRK)') . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo "\n";	
+	
+	echo '"' . __d('webzash', 'Dutchess (DUT)') . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo "\n";	
+	
+	echo '"' . __d('webzash', 'Empire State College (ESC)') . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo "\n";	
+	
+	echo '"' . __d('webzash', 'Environmental Science &amp; Forestry (ESF)') . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo "\n";	
+	
+	echo '"' . __d('webzash', 'Erie (ERI)') . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo "\n";	
+	
+	echo '"' . __d('webzash', 'Farmingdale (FAR)') . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo "\n";
+	
+	echo '"' . __d('webzash', 'Fashion Institute(FIT)') . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo "\n";
+	
+	echo '"' . __d('webzash', 'Finger Lakes (FLC)') . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo "\n";	
+	
+	echo '"' . __d('webzash', 'Fredonia (FRE)') . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo "\n";	
+	
+	echo '"' . __d('webzash', 'Fulton-Montgomery (FMC)') . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo "\n";	
+	
+	echo '"' . __d('webzash', 'Genesee (GNC)') . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo "\n";	
+	
+	echo '"' . __d('webzash', 'Geneseo (GEN)') . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo "\n";	
+	
+	echo '"' . __d('webzash', 'Herkimer (HER)') . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo "\n";	
+	
+	echo '"' . __d('webzash', 'Hudson Valley (HVC)') . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo "\n";	
+	
+	echo '"' . __d('webzash', 'Jamestown (JAM)') . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo "\n";	
+	
+	echo '"' . __d('webzash', 'Jefferson (JEF)') . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo "\n";	
+	
+	echo '"' . __d('webzash', 'Maritime (MAR)') . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo "\n";
+	
+	echo '"' . __d('webzash', 'Mohawk Valley (MVC)') . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo "\n";	
+	
+	echo '"' . __d('webzash', 'Monroe (MON)') . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo "\n";	
+	
+	echo '"' . __d('webzash', 'Morrisville (MOR)') . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo "\n";	
+	
+	echo '"' . __d('webzash', 'Nassau (NAS)') . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo "\n";	
+	
+	echo '"' . __d('webzash', 'New Paltz (NEW)') . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo "\n";	
+	
+	echo '"' . __d('webzash', 'Niagara (NIA)') . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo "\n";	
+	
+	echo '"' . __d('webzash', 'North Country (NOR)') . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo "\n";	
+	
+	echo '"' . __d('webzash', 'Old Westbury (OLD)') . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo "\n";	
+	
+	echo '"' . __d('webzash', 'Oneonta (ONE)') . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo "\n";	
+	
+	echo '"' . __d('webzash', 'Onondaga (ONO)') . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo "\n";	
+	
+	echo '"' . __d('webzash', 'Optometry (OPT)') . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo "\n";	
+	
+	echo '"' . __d('webzash', 'Orange (ORA)') . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo "\n";	
+	
+	echo '"' . __d('webzash', 'Oswego (OSW)') . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo "\n";
+		
+	echo '"' . __d('webzash', 'Plattsburgh (PLA)') . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo "\n";	
+	
+	echo '"' . __d('webzash', 'Potsdam (POT)') . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo "\n";
+	
+	echo '"' . __d('webzash', 'Purchase (PUR)') . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo "\n";
+	
+	echo '"' . __d('webzash', 'Research Foundation (RF)') . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo "\n";
+	
+	echo '"' . __d('webzash', 'Rockland (ROC)') . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo "\n";	
+	
+	echo '"' . __d('webzash', 'Schenectady (SCH)') . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo "\n";	
+	
+	echo '"' . __d('webzash', 'Stony Brook (STB)') . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo "\n";	
+	
+	echo '"' . __d('webzash', 'Suffolk (SUF)') . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo "\n";	
+	
+	echo '"' . __d('webzash', 'Sullivan (SUL)') . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo "\n";	
+	
+	echo '"' . __d('webzash', 'System Administration (CEN)') . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo "\n";	
+	
+	echo '"' . __d('webzash', 'Tompkins (TCC)') . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo "\n";	
+	
+	echo '"' . __d('webzash', 'Ulster (ULS)') . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo "\n";	
+	
+	echo '"' . __d('webzash', 'Upstate Medical University (SYR)') . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo "\n";
+	echo "\n";
+	
 	/* Total */
-	echo '"' . __d('webzash', 'Total') . '",';
-	echo '"' . toCurrency('D', $bsheet['final_assets_total']) . '"';
+	
+	echo '"' . __d('webzash', 'Totals') . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
+	echo '"' . "" . '",';
 	echo "\n";
-	echo "\n";
-
-	/**************** Liabilities ****************/
-	echo '"' . __d('webzash', 'Liabilities and Owners Equity') . '",';
-	echo '"' . __d('webzash', '(Cr) Amount') . '"';
-	echo "\n";
-	echo account_st_short($bsheet['liabilities'], $c = -1, $this, 'C');
-	echo "\n";
-
-	/* Liabilities Total */
-	echo '"' . __d('webzash', 'Total Liability and Owners Equity') . '",';
-	echo '"' . toCurrency('C', $bsheet['liabilities_total']) . '"';
-	echo "\n";
-
-	/* Net profit */
-	if (calculate($bsheet['pandl'], 0, '>=')) {
-		echo '"' . __d('webzash', 'Profit & Loss Account (Net Profit)') . '",';
-		echo '"' . toCurrency('C', $bsheet['pandl']) . '"';
-		echo "\n";
-	}
-
-	if ($bsheet['is_opdiff']) {
-		/* If diff in opening balance is Cr */
-		if ($bsheet['opdiff']['opdiff_balance_dc'] == 'C') {
-			echo '"' . __d('webzash', 'Diff in O/P Balance') . '",';
-			echo '"' . toCurrency('C', $bsheet['opdiff']['opdiff_balance']) . '"';
-			echo "\n";
-		}
-	}
-
-	/* Total */
-	echo '"' . __d('webzash', 'Total') . '",';
-	echo '"' . toCurrency('C', $bsheet['final_liabilities_total']) .	'"';
-	echo "\n";
-	echo "\n";
+	echo '"' . "\n";
+	
+?>

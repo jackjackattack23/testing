@@ -156,6 +156,73 @@ $(document).ready(function() {
 });
 </script>
 
+<div id="accordion">
+	<h3>Options</h3>
+
+	<div class="balancesheet form">
+	<?php
+		echo $this->Form->create('Cpdsummary', array(
+			'inputDefaults' => array(
+				'div' => 'form-group',
+				'wrapInput' => false,
+				'class' => 'form-control',
+			),
+		));
+
+		echo $this->Form->input('opening', array(
+			'type' => 'checkbox',
+			'label' => __d('webzash', 'Show CPD Summary of Accounts')
+		));
+
+		echo $this->Form->input('startdate', array(
+			'label' => __d('webzash', 'Start date'),
+			'afterInput' => '<span class="help-block">' . __d('webzash', 'Note : Leave start date as empty if you want statement from the start of the financial year.') . '</span>',
+		));
+		echo $this->Form->input('enddate', array(
+			'label' => __d('webzash', 'End date'),
+			'afterInput' => '<span class="help-block">' . __d('webzash', 'Note : Leave end date as empty if you want statement till the end of the financial year.') . '</span>',
+		));
+
+		echo '<div class="form-group">';
+		echo $this->Form->submit(__d('webzash', 'Submit'), array(
+			'div' => false,
+			'class' => 'btn btn-primary'
+		));
+		echo $this->Html->tag('span', '', array('class' => 'link-pad'));
+		echo $this->Html->link(__d('webzash', 'Clear'), array('plugin' => 'webzash', 'controller' => 'reports', 'action' => 'cpdsummary'), array('class' => 'btn btn-default'));
+		echo '</div>';
+
+		echo $this->Form->end();
+	?>
+	</div>
+</div>
+<br />
+
+<?php
+	echo '<div class="btn-group" role="group">';
+
+	echo $this->Html->link(
+		__d('webzash', 'DOWNLOAD .CSV'),
+		'/' . $this->params->url . '/downloadcsv:true',
+		array('class' => 'btn btn-default btn-sm')
+	);
+
+	echo $this->Html->link(
+		__d('webzash', 'DOWNLOAD .XLS'),
+		'/' . $this->params->url . '/downloadxls:true',
+		array('class' => 'btn btn-default btn-sm')
+	);
+
+	echo $this->Html->link(__d('webzash', 'PRINT'), '',
+		array(
+			'class' => 'btn btn-default btn-sm',
+			'onClick' => "window.open('" . $this->Html->url('/' . $this->params->url . '/print:true') . "', 'windowname','toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,copyhistory=no,width=1000,height=600'); return false;"
+		)
+	);
+
+	echo '</div>';
+	echo '<br /><br />';
+?>
 
 <div class="subtitle text-center">
 	<?php echo $subtitle ?>
@@ -181,7 +248,7 @@ $(document).ready(function() {
     <td><?php echo ''; ?></td>
     <td><?php echo ''; ?></td>
     <td><?php echo ''; ?></td>
-    <td><?php echo toCurrency('D', $bsheet['final_assets_total']); ?></td>
+    <td><?php echo ''; ?></td>
     <td><?php echo ''; ?></td>
   </tr>
   <tr>

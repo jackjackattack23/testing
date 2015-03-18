@@ -57,7 +57,7 @@ class ReportsController extends WebzashAppController {
 	}
 
 /**
- * balancesheet method for all CPD accounts
+ * summary method for all CPD accounts
  *
  * @return void
  */
@@ -67,30 +67,30 @@ class ReportsController extends WebzashAppController {
 
 		/* POST */
 		if ($this->request->is('post')) {
-			if ($this->request->data['Balancesheet']['opening'] == 1) {
+			if ($this->request->data['Cpdsummary']['opening'] == 1) {
 				return $this->redirect(array(
 					'plugin' => 'webzash',
 					'controller' => 'reports',
-					'action' => 'balancesheet',
+					'action' => 'cpdsummary',
 					'options' => 1,
 					'opening' => 1,
 				));
 			} else {
-				if (!empty($this->request->data['Balancesheet']['startdate']) || !empty($this->request->data['Balancesheet']['enddate'])) {
+				if (!empty($this->request->data['Cpdsummary']['startdate']) || !empty($this->request->data['Cpdsummary']['enddate'])) {
 					return $this->redirect(array(
 						'plugin' => 'webzash',
 						'controller' => 'reports',
-						'action' => 'balancesheet',
+						'action' => 'cpdsummary',
 						'options' => 1,
 						'opening' => 0,
-						'startdate' => $this->request->data['Balancesheet']['startdate'],
-						'enddate' => $this->request->data['Balancesheet']['enddate']
+						'startdate' => $this->request->data['Cpdsummary']['startdate'],
+						'enddate' => $this->request->data['Cpdsummary']['enddate']
 					));
 				} else {
 					return $this->redirect(array(
 						'plugin' => 'webzash',
 						'controller' => 'reports',
-						'action' => 'balancesheet'
+						'action' => 'cpdsummary'
 					));
 				}
 			}
@@ -104,43 +104,43 @@ class ReportsController extends WebzashAppController {
 			$this->set('options', false);
 
 			/* Sub-title*/
-			$this->set('subtitle', __d('webzash', 'Closing Balance Sheet as on ') .
+			$this->set('subtitle', __d('webzash', 'Closing Summary of Accounts as on ') .
 				dateFromSql(Configure::read('Account.enddate')));
 		} else {
 			$this->set('options', true);
 			if (!empty($this->passedArgs['opening'])) {
 				$only_opening = true;
-				$this->request->data['Balancesheet']['opening'] = '1';
+				$this->request->data['Cpdsummary']['opening'] = '1';
 
 				/* Sub-title*/
-				$this->set('subtitle', __d('webzash', 'Opening Balance Sheet as on ') .
+				$this->set('subtitle', __d('webzash', 'Opening Summary of Accounts as on ') .
 					dateFromSql(Configure::read('Account.startdate')));
 			} else {
 				if (!empty($this->passedArgs['startdate'])) {
 					$startdate = dateToSQL($this->passedArgs['startdate']);
-					$this->request->data['Balancesheet']['startdate'] =
+					$this->request->data['Cpdsummary']['startdate'] =
 						$this->passedArgs['startdate'];
 				}
 				if (!empty($this->passedArgs['enddate'])) {
 					$enddate = dateToSQL($this->passedArgs['enddate']);
-					$this->request->data['Balancesheet']['enddate'] =
+					$this->request->data['Cpdsummary']['enddate'] =
 						$this->passedArgs['enddate'];
 				}
 
 				/* Sub-title*/
 				if (!empty($this->passedArgs['startdate']) &&
 					!empty($this->passedArgs['enddate'])) {
-					$this->set('subtitle', __d('webzash', 'Balance Sheet from ' .
+					$this->set('subtitle', __d('webzash', 'Summary of Accounts from ' .
 						dateFromSql(dateToSQL($this->passedArgs['startdate'])) . ' to ' .
 						dateFromSql(dateToSQL($this->passedArgs['enddate']))
 					));
 				} else if (!empty($this->passedArgs['startdate'])) {
-					$this->set('subtitle', __d('webzash', 'Balance Sheet from ' .
+					$this->set('subtitle', __d('webzash', 'Summary of Accounts from ' .
 						dateFromSql(dateToSQL($this->passedArgs['startdate'])) . ' to ' .
 						dateFromSql(Configure::read('Account.enddate'))
 					));
 				} else if (!empty($this->passedArgs['enddate'])) {
-					$this->set('subtitle', __d('webzash', 'Balance Sheet from ' .
+					$this->set('subtitle', __d('webzash', 'Summary of Accounts from ' .
 						dateFromSql(Configure::read('Account.startdate')) . ' to ' .
 						dateFromSql(dateToSQL($this->passedArgs['enddate']))
 					));
@@ -149,9 +149,9 @@ class ReportsController extends WebzashAppController {
 		}
 
 		/**********************************************************************/
-		/*********************** BALANCESHEET CALCULATIONS ********************/
+		/*********************** CPDSUMMARY CALCULATIONS ********************/
 		/**********************************************************************/
-
+	
 		/* Liabilities */
 		$liabilities = new AccountList();
 		$liabilities->Group = &$this->Group;
@@ -230,7 +230,7 @@ class ReportsController extends WebzashAppController {
 			$bsheet['is_opdiff'] = true;
 		}
 
-		/**** Final balancesheet total ****/
+		/**** Final cpdsummary total ****/
 		$bsheet['final_liabilities_total'] = $bsheet['liabilities_total'];
 		$bsheet['final_assets_total'] = $bsheet['assets_total'];
 
@@ -297,6 +297,8 @@ class ReportsController extends WebzashAppController {
 
 		return;
 	}
+
+
 
 /**
  * balancesheet method for all ITEC accounts
