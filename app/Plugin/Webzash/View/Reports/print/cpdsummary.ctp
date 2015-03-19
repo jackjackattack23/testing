@@ -96,187 +96,608 @@ function print_space($count)
 
 ?>
 
-<?php
-/* Show difference in opening balance */
-if ($bsheet['is_opdiff']) {
-	echo '<div><div role="alert" class="alert alert-danger">' .
-		__d('webzash', 'There is a difference in opening balance of ') .
-		toCurrency($bsheet['opdiff']['opdiff_balance_dc'], $bsheet['opdiff']['opdiff_balance']) .
-		'</div></div>';
-}
-
-/* Show difference in liabilities and assets total */
-if (calculate($bsheet['final_liabilities_total'], $bsheet['final_assets_total'], '!=')) {
-	$final_total_diff = calculate($bsheet['final_liabilities_total'], $bsheet['final_assets_total'], '-');
-	echo '<div><div role="alert" class="alert alert-danger">' .
-		__d('webzash', 'There is a difference in Total Liabilities and Total Assets of ') .
-		toCurrency('X', $final_total_diff) .
-		'</div></div>';
-}
-?>
 
 <div class="subtitle text-center">
 	<?php echo $subtitle ?>
 </div>
 
-<table>
+<hr/>
 
-	<!-- Liabilities and Assets -->
-	<tr>
-
-		<!-- Assets -->
-		<td class="table-top width-50">
-			<table class="stripped">
-				<tr>
-					<th><?php echo __d('webzash', 'Assets'); ?></th>
-					<th class="text-right"><?php echo __d('webzash', '(Dr) Amount'); ?></th>
-				</tr>
-				<?php echo account_st_short($bsheet['assets'], $c = -1, $this, 'D'); ?>
-			</table>
-		</td>
-
-		<!-- Liabilities -->
-		<td class="table-top width-50">
-			<table class="stripped">
-				<tr>
-					<th><?php echo __d('webzash', 'Liabilities and Owners Equity'); ?></th>
-					<th class="text-right"><?php echo __d('webzash', '(Cr) Amount'); ?></th>
-				</tr>
-				<?php echo account_st_short($bsheet['liabilities'], $c = -1, $this, 'C'); ?>
-			</table>
-		</td>
-
-	</tr>
-
-	<tr>
-
-		<!-- Assets Calculations -->
-		<td class="table-top width-50">
-			<div class="report-tb-pad"></div>
-			<table class="stripped">
-				<?php
-				/* Assets Total */
-				if (calculate($bsheet['assets_total'], 0, '>=')) {
-					echo '<tr class="bold-text">';
-					echo '<td>' . __d('webzash', 'Total Assets') . '</td>';
-					echo '<td class="text-right">' . toCurrency('D', $bsheet['assets_total']) . '</td>';
-					echo '</tr>';
-				} else {
-					echo '<tr class="dc-error bold-text">';
-					echo '<td>' . __d('webzash', 'Total Assets') . '</td>';
-					echo '<td class="text-right show-tooltip" data-toggle="tooltip" data-original-title="Expecting positive Dr Balance">' . toCurrency('D', $bsheet['assets_total']) . '</td>';
-					echo '</tr>';
-				}
-				?>
-				<tr class="bold-text">
-					<?php
-					/* Net loss */
-					if (calculate($bsheet['pandl'], 0, '>=')) {
-						echo '<td>&nbsp</td>';
-						echo '<td>&nbsp</td>';
-					} else {
-						echo '<td>' . __d('webzash', 'Profit & Loss Account (Net Loss)') . '</td>';
-						$positive_pandl = calculate($bsheet['pandl'], 0, 'n');
-						echo '<td class="text-right">' . toCurrency('D', $positive_pandl) . '</td>';
-					}
-					?>
-				</tr>
-				<?php
-				/* Difference in opening balance */
-				if ($bsheet['is_opdiff']) {
-					echo '<tr class="bold-text error-text">';
-					/* If diff in opening balance is Dr */
-					if ($bsheet['opdiff']['opdiff_balance_dc'] == 'D') {
-						echo '<td>' . __d('webzash', 'Diff in O/P Balance') . '</td>';
-						echo '<td class="text-right">' . toCurrency('D', $bsheet['opdiff']['opdiff_balance']) . '</td>';
-					} else {
-						echo '<td>&nbsp</td>';
-						echo '<td>&nbsp</td>';
-					}
-					echo '</tr>';
-				}
-				?>
-
-				<?php
-				/* Total */
-				if (calculate($bsheet['final_liabilities_total'],
-					$bsheet['final_assets_total'], '==')) {
-					echo '<tr class="bold-text bg-filled">';
-				} else {
-					echo '<tr class="bold-text error-text bg-filled">';
-				}
-				echo '<td>' . __d('webzash', 'Total') . '</td>';
-				echo '<td class="text-right">' .
-					toCurrency('D', $bsheet['final_assets_total']) .
-					'</td>';
-				echo '</tr>';
-				?>
-			</table>
-		</td>
-
-		<!-- Liabilities Calculations -->
-		<td class="table-top width-50">
-			<div class="report-tb-pad"></div>
-			<table class="stripped">
-				<?php
-				/* Liabilities Total */
-				if (calculate($bsheet['liabilities_total'], 0, '>=')) {
-					echo '<tr class="bold-text">';
-					echo '<td>' . __d('webzash', 'Total Liability and Owners Equity') . '</td>';
-					echo '<td class="text-right">' . toCurrency('C', $bsheet['liabilities_total']) . '</td>';
-					echo '</tr>';
-				} else {
-					echo '<tr class="dc-error bold-text">';
-					echo '<td>' . __d('webzash', 'Total Liability and Owners Equity') . '</td>';
-					echo '<td class="text-right show-tooltip" data-toggle="tooltip" data-original-title="Expecting positive Cr balance">' . toCurrency('C', $bsheet['liabilities_total']) . '</td>';
-					echo '</tr>';
-				}
-				?>
-				<tr class="bold-text">
-					<?php
-					/* Net profit */
-					if (calculate($bsheet['pandl'], 0, '>=')) {
-						echo '<td>' . __d('webzash', 'Profit & Loss Account (Net Profit)') . '</td>';
-						echo '<td class="text-right">' . toCurrency('C', $bsheet['pandl']) . '</td>';
-					} else {
-						echo '<td>&nbsp</td>';
-						echo '<td>&nbsp</td>';
-					}
-					?>
-				</tr>
-				<?php
-				/* Difference in opening balance */
-				if ($bsheet['is_opdiff']) {
-					echo '<tr class="bold-text error-text">';
-					/* If diff in opening balance is Cr */
-					if ($bsheet['opdiff']['opdiff_balance_dc'] == 'C') {
-						echo '<td>' . __d('webzash', 'Diff in O/P Balance') . '</td>';
-						echo '<td class="text-right">' . toCurrency('C', $bsheet['opdiff']['opdiff_balance']) . '</td>';
-					} else {
-						echo '<td>&nbsp</td>';
-						echo '<td>&nbsp</td>';
-					}
-					echo '</tr>';
-				}
-				?>
-
-				<?php
-				/* Total */
-				if (calculate($bsheet['final_liabilities_total'],
-					$bsheet['final_assets_total'], '==')) {
-					echo '<tr class="bold-text bg-filled">';
-				} else {
-					echo '<tr class="bold-text error-text bg-filled">';
-				}
-				echo '<td>' . __d('webzash', 'Total') . '</td>';
-				echo '<td class="text-right">' .
-					toCurrency('C', $bsheet['final_liabilities_total']) .
-					'</td>';
-				echo '</tr>';
-				?>
-			</table>
-		</td>
-
-	</tr>
-
+<table class="table table-striped table-hover table-condensed">
+  <thead>
+  <tr>
+    <th>Account</th>
+    <th>Initial Point Allocation</th>
+    <th>Additional Points Purchased</th>
+    <th>Total Points Available</th>
+    <th>CPD Points Used</th>
+    <th>Available Points Balance</th>
+    <th>Remaining Original Points</th>
+  </tr>
+  </thead>
+  <tr>
+    <td>Adirondack Community College (ADI)</td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+  </tr>
+  <tr>
+    <td>University at Albany (ALB)</td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+  </tr>
+  <tr>
+    <td>Alfred State, Technology (ALF)</td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+  </tr>
+  <tr>
+    <td>Alfred, Ceramics (CER)</td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+  </tr>
+  <tr>
+    <td>Binghamton (BIN)</td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+  </tr>
+  <tr>
+    <td>Brockport (BRO)</td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+  </tr>
+  <tr>
+    <td>Broome (BRM)</td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+  </tr>
+  <tr>
+    <td>Buffalo State College(BUC)</td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+  </tr>
+  <tr>
+    <td>University of Buffalo (BUF)</td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+  </tr>
+  <tr>
+    <td>Canton (CAN)</td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+  </tr>
+  <tr>
+    <td>Cayuga (CAY)</td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+  </tr>
+  <tr>
+    <td>Clinton (CLI)</td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+  </tr>
+  <tr>
+    <td>Cobleskill (COB)</td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+  </tr>
+  <tr>
+    <td>Columbia-Greene (CGC)</td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+  </tr>
+  <tr>
+    <td>Cornell, Agriculture &amp; Life Sciences (CNL-A)</td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+  </tr>
+  <tr>
+    <td>Cornell, Human Ecology (CNL-E)</td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+  </tr>
+  <tr>
+    <td>Cornell, Veterinary Medicine (CNL-V)</td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+  </tr>
+  <tr>
+    <td>Cornell, Industrial and Labor Relations (CNL-R)</td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+  </tr>
+  <tr>
+    <td>Corning (CNG)</td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+  </tr>
+  <tr>
+    <td>Cortland (COR)</td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+  </tr>
+  <tr>
+    <td>Delhi (DEL)</td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+  </tr>
+  <tr>
+    <td>Downstate Medical Center (BRK)</td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+  </tr>
+  <tr>
+    <td>Dutchess (DUT)</td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+  </tr>
+  <tr>
+    <td>Empire State College (ESC)</td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+  </tr>
+  <tr>
+    <td>Environmental Science &amp; Forestry (ESF)</td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+  </tr>
+  <tr>
+    <td>Erie (ERI)</td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+  </tr>
+  <tr>
+    <td>Farmingdale (FAR)</td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+  </tr>
+  <tr>
+    <td>Fashion Institute(FIT)</td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+  </tr>
+  <tr>
+    <td>Finger Lakes (FLC)</td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+  </tr>
+  <tr>
+    <td>Fredonia (FRE)</td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+  </tr>
+  <tr>
+    <td>Fulton-Montgomery (FMC)</td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+  </tr>
+  <tr>
+    <td>Genesee (GNC)</td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+  </tr>
+  <tr>
+    <td>Geneseo (GEN)</td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+  </tr>
+  <tr>
+    <td>Herkimer (HER)</td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+  </tr>
+  <tr>
+    <td>Hudson Valley (HVC)</td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+  </tr>
+  <tr>
+    <td>Jamestown (JAM)</td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+  </tr>
+  <tr>
+    <td>Jefferson (JEF)</td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+  </tr>
+  <tr>
+    <td>Maritime (MAR)</td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+  </tr>
+  <tr>
+    <td>Mohawk Valley (MVC)</td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+  </tr>
+  <tr>
+    <td>Monroe (MON)</td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+  </tr>
+  <tr>
+    <td>Morrisville (MOR)</td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+  </tr>
+  <tr>
+    <td>Nassau (NAS)</td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+  </tr>
+  <tr>
+    <td>New Paltz (NEW)</td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+  </tr>
+  <tr>
+    <td>Niagara (NIA)</td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+  </tr>
+  <tr>
+    <td>North Country (NOR)</td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+  </tr>
+  <tr>
+    <td>Old Westbury (OLD)</td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+  </tr>
+  <tr>
+    <td>Oneonta (ONE)</td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+  </tr>
+  <tr>
+    <td>Onondaga (ONO)</td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+  </tr>
+  <tr>
+    <td>Optometry (OPT)</td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+  </tr>
+  <tr>
+    <td>Orange (ORA)</td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+  </tr>
+  <tr>
+    <td>Oswego (OSW)</td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+  </tr>
+  <tr>
+    <td>Plattsburgh (PLA)</td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+  </tr>
+  <tr>
+    <td>Potsdam (POT)</td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+  </tr>
+  <tr>
+    <td>Purchase (PUR)</td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+  </tr>
+  <tr>
+    <td>Research Foundation (RF)</td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+  </tr>
+  <tr>
+    <td>Rockland (ROC)</td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+  </tr>
+  <tr>
+    <td>Schenectady (SCH)</td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+  </tr>
+  <tr>
+    <td>Stony Brook (STB)</td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+  </tr>
+  <tr>
+    <td>Suffolk (SUF)</td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+  </tr>
+  <tr>
+    <td>Sullivan (SUL)</td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+  </tr>
+  <tr>
+    <td>System Administration (CEN)</td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+  </tr>
+  <tr>
+    <td>Tompkins (TCC)</td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+  </tr>
+  <tr>
+    <td>Ulster (ULS)</td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+  </tr>
+  <tr>
+    <td>Upstate Medical University (SYR)</td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+  </tr>
+  <tr>
+    <td><strong>Totals</strong></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+    <td><?php echo ''; ?></td>
+  </tr>
 </table>

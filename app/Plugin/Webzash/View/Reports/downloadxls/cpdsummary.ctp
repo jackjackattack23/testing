@@ -241,7 +241,7 @@ function print_space($count)
 	echo $xRE;
 	
 	echo $xRS;
-	echo $xCS . __d('webzash', 'Cornell, Agriculture &amp; Life Sciences (CNL-A)') . $xCE;
+	echo $xCS . __d('webzash', 'Cornell, Agriculture & Life Sciences (CNL-A)') . $xCE;
 	echo $xCS . "" . $xCE;
 	echo $xCS . "" . $xCE;
 	echo $xCS . "" . $xCE;
@@ -341,7 +341,7 @@ function print_space($count)
 	echo $xRE;
 	
 	echo $xRS;
-	echo $xCS . __d('webzash', 'Environmental Science &amp; Forestry (ESF)') . $xCE;
+	echo $xCS . __d('webzash', 'Environmental Science & Forestry (ESF)') . $xCE;
 	echo $xCS . "" . $xCE;
 	echo $xCS . "" . $xCE;
 	echo $xCS . "" . $xCE;
@@ -744,11 +744,11 @@ function print_space($count)
 	/* Total */
 	echo $xRS;
 	echo $xCS . __d('webzash', 'Totals') . $xCE;
-	echo $xCS . toCurrency('D', $bsheet['final_assets_total']) . $xCE;
-	echo $xCS . toCurrency('D', $bsheet['final_assets_total']) . $xCE;
-	echo $xCS . toCurrency('D', $bsheet['final_assets_total']) . $xCE;
-	echo $xCS . toCurrency('D', $bsheet['final_assets_total']) . $xCE;
-	echo $xCS . toCurrency('D', $bsheet['final_assets_total']) . $xCE;
-	echo $xCS . toCurrency('D', $bsheet['final_assets_total']) . $xCE;
+	echo $xCS . "" . $xCE;
+	echo $xCS . "" . $xCE;
+	echo $xCS . "" . $xCE;
+	echo $xCS . "" . $xCE;
+	echo $xCS . "" . $xCE;
+	echo $xCS . "" . $xCE;
 	echo $xRE;
 	echo $xRS . $xRE;

@@ -86,8 +86,9 @@ function print_space($count)
 	echo '"' . __d('webzash', 'Available Points Balance') . '",';
 	echo '"' . __d('webzash', 'Remaining Original Points') . '",';
 	echo "\n";
+	echo "\n";
 	
-	echo '"' . __d('webzash', 'Adirondack Community College (ADI)') . ',';
+	echo '"' . __d('webzash', 'Adirondack Community College (ADI)') . '",';
 	echo '"' . "" . '",';
 	echo '"' . "" . '",';
 	echo '"' . "" . '",';
@@ -213,7 +214,7 @@ function print_space($count)
 	echo '"' . "" . '",';
 	echo "\n";	
 	
-	echo '"' . __d('webzash', 'Cornell, Agriculture &amp; Life Sciences (CNL-A)') . '",';
+	echo '"' . __d('webzash', 'Cornell, Agriculture & Life Sciences (CNL-A)') . '",';
 	echo '"' . "" . '",';
 	echo '"' . "" . '",';
 	echo '"' . "" . '",';
@@ -303,7 +304,7 @@ function print_space($count)
 	echo '"' . "" . '",';
 	echo "\n";	
 	
-	echo '"' . __d('webzash', 'Environmental Science &amp; Forestry (ESF)') . '",';
+	echo '"' . __d('webzash', 'Environmental Science & Forestry (ESF)') . '",';
 	echo '"' . "" . '",';
 	echo '"' . "" . '",';
 	echo '"' . "" . '",';

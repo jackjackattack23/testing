@@ -43,7 +43,7 @@ class ReportsController extends WebzashAppController {
  * @var array
  */
 	public $uses = array('Webzash.Group', 'Webzash.Ledger', 'Webzash.Entry',
-		'Webzash.Entryitem', 'Webzash.Tag', 'Webzash.Queue');
+		'Webzash.Entryitem', 'Webzash.Tag', 'Webzash.Queue', 'Webzash.Wzaccount', 'Webzash.Setting');
 
 /**
  * index method
@@ -55,6 +55,34 @@ class ReportsController extends WebzashAppController {
 
 		return;
 	}
+
+
+/**
+ *  method for test page
+ *
+ * @return void
+ */
+	public function test() {
+
+		$this->set('title_for_layout', __d('webzash', 'Test Page'));
+		
+		$this->Wzaccount->useDbConfig = 'wz';
+		
+		$this->CustomPaginator->settings = array(
+			'Wzaccount' => array(
+				'limit' => $this->Session->read('Wzsetting.row_count'),
+				'order' => array('Wzaccount.label' => 'asc'),
+			)
+		
+		);
+		$this->set('wzaccounts', $this->CustomPaginator->paginate('Wzaccount'));
+		
+		
+
+		return;
+	}
+
+
 
 /**
  * summary method for all CPD accounts
@@ -297,7 +325,6 @@ class ReportsController extends WebzashAppController {
 
 		return;
 	}
-
 
 
 /**
