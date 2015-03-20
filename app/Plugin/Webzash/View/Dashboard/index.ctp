@@ -74,8 +74,8 @@ if (!extension_loaded('bcmath')) {
 				</table>
 			</div>
 		</div>
-		<div class="panel panel-info">
-			<div class="panel-heading"><?php echo __d('webzash', 'Bank & cash summary'); ?></div>
+		<!--<div class="panel panel-info">
+			<div class="panel-heading"><?php /* echo __d('webzash', 'Bank & cash summary'); ?></div>
 			<div class="panel-body">
 				<table>
 				<?php
@@ -85,10 +85,10 @@ if (!extension_loaded('bcmath')) {
 						echo '<td>' . toCurrency($ledger['balance']['dc'], $ledger['balance']['amount']) . '</td>';
 						echo '</tr>';
 					}
-				?>
+				*/?>
 				</table>
 			</div>
-		</div>
+		</div>-->
 		<div class="panel panel-info">
 			<div class="panel-heading"><?php echo __d('webzash', 'Account summary'); ?></div>
 			<div class="panel-body">
@@ -119,9 +119,9 @@ if (!extension_loaded('bcmath')) {
 			<div class="panel-body">
             	<table>
 					<tr>
-						<td><?php echo '<a href="/sites/cpd-points-dev/entries/index/queue:1" class = "btn btn-default">Approved Items</a>'; ?></td>
-                        <td><?php echo '<a href="/sites/cpd-points-dev/entries/index/queue:2" class = "btn btn-default">Rejected Items</a>'; ?></td>
-                        <td><?php echo '<a href="/sites/cpd-points-dev/entries/index/queue:3" class = "btn btn-default">Pending Items</a>'; ?></td>
+						<td><?php echo '<a href="/sites/cpd-points/entries/index/queue:1" class = "btn btn-default">Approved Items</a>'; ?></td>
+                        <td><?php echo '<a href="/sites/cpd-points/entries/index/queue:2" class = "btn btn-default">Rejected Items</a>'; ?></td>
+                        <td><?php echo '<a href="/sites/cpd-points/entries/index/queue:3" class = "btn btn-default">Pending Items</a>'; ?></td>
 				    </tr>
                 </table>
 			</div>

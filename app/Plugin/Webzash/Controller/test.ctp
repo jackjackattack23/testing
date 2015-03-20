@@ -26,8 +26,25 @@
  */
 ?>
 
+<?php
+	if (count($settings) <= 0) {
+		echo 'Nothing here.';
+	} else {
+		echo '<table>';
+		echo '<tr>';
+			  echo '<td><strong>' . 'Name' . '</strong></td>';
+			  
+		echo '</tr>';
+		foreach ($settings as $row => $data) {
+			echo '<tr>';
+			  echo '<td>' . h($data['Setting']['name']) . '</td>';
+			  
+			echo '</tr>';
+		}
+		echo '</table>';
+	}
+?>
 
-    
 <table class="table table-striped table-hover table-condensed">
   <thead>
   <tr>
@@ -41,24 +58,21 @@
     <th><?php echo __d('webzash', 'Remaining Original Points'); ?></th>
   </tr>
   </thead>
-<?php foreach ($settings as $setting) {?>
-	<?php foreach ($wzaccounts as $wzaccount) { ?>
-    	<?php foreach ($ledgers as $ledger) { ?>
+  	<?php foreach ($settings as $row => $data) {?>
 		<tr>
-			<td><?php echo h($setting['Setting']['name']); ?></td>
-            <td><?php echo h($wzaccount['Wzaccount']['label']); ?></td>    
-            <td><?php echo h($ledger['Ledger']['op_balance']); ?></td>
-            <td><?php echo h($ledger['Ledger']['op_balance_dc']);; ?></td>
+			<td><?php echo h($data['Setting']['name']); ?></td>
+            
+            <?php foreach ($wzaccounts as $wzaccount) { ?>
+            <td><?php echo h($wzaccount['Wzaccount']['label']); ?></td>
+            
+            <td><?php ""; ?></td>
+            <td><?php ""; ?></td>
             <td><?php ""; ?></td>
             <td><?php ""; ?></td>
             <td><?php ""; ?></td>
             <td><?php ""; ?></td>
 		</tr>
-        <?php } ?>
-	<?php } ?>
-<?php } ?>
+	<?php }} ?>
 </table>
-
-
 
 

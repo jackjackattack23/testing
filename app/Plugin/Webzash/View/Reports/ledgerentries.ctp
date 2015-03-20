@@ -26,54 +26,6 @@
  */
 ?>
 
-<script type="text/javascript">
-$(document).ready(function() {
-
-	$("#accordion").accordion({
-		collapsible: true,
-		<?php
-			if ($options == false) {
-				echo 'active: false';
-			}
-		?>
-	});
-
-	/* Calculate date range in javascript */
-	startDate = new Date(<?php echo strtotime(Configure::read('Account.startdate')) * 1000; ?>  + (new Date().getTimezoneOffset() * 60 * 1000));
-	endDate = new Date(<?php echo strtotime(Configure::read('Account.enddate')) * 1000; ?>  + (new Date().getTimezoneOffset() * 60 * 1000));
-
-	/* Setup jQuery datepicker ui */
-	$('#ReportStartdate').datepicker({
-		minDate: startDate,
-		maxDate: endDate,
-		dateFormat: '<?php echo Configure::read('Account.dateformatJS'); ?>',
-		numberOfMonths: 1,
-		onClose: function(selectedDate) {
-			if (selectedDate) {
-				$("#ReportEnddate").datepicker("option", "minDate", selectedDate);
-			} else {
-				$("#ReportEnddate").datepicker("option", "minDate", startDate);
-			}
-		}
-	});
-	$('#ReportEnddate').datepicker({
-		minDate: startDate,
-		maxDate: endDate,
-		dateFormat: '<?php echo Configure::read('Account.dateformatJS'); ?>',
-		numberOfMonths: 1,
-		onClose: function(selectedDate) {
-			if (selectedDate) {
-				$("#ReportStartdate").datepicker("option", "maxDate", selectedDate);
-			} else {
-				$("#ReportStartdate").datepicker("option", "maxDate", endDate);
-			}
-		}
-	});
-
-	$("#ReportLedgerId").select2({width:'100%'});
-});
-</script>
-
 <div class="ledgerentries form">
 	<?php
 		echo $this->Form->create('Report', array(
@@ -85,16 +37,6 @@ $(document).ready(function() {
 		));
 
 		echo $this->Form->input('ledger_id', array('type' => 'select', 'options' => $ledgers, 'escape' => false, 'disabled' => $ledgers_disabled, 'label' => __d('webzash', 'Ledger account')));
-
-		echo '<div id="accordion">';
-		echo '<h3>Options</h3>';
-		echo '<div>';
-
-		echo $this->Form->input('startdate', array('label' => __d('webzash', 'Start date')));
-		echo $this->Form->input('enddate', array('label' => __d('webzash', 'End date')));
-		echo '</div>';
-		echo '</div>';
-		echo '<br />';
 
 		echo '<div class="form-group">';
 		echo $this->Form->submit(__d('webzash', 'Submit'), array(

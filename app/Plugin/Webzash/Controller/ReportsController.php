@@ -73,14 +73,29 @@ class ReportsController extends WebzashAppController {
 				'limit' => $this->Session->read('Wzsetting.row_count'),
 				'order' => array('Wzaccount.label' => 'asc'),
 			)
-		
 		);
 		$this->set('wzaccounts', $this->CustomPaginator->paginate('Wzaccount'));
 		
+		$settings = $this->Setting->find('all', array('order' => array('Setting.name ASC')));
+		$this->set('settings', $settings);
 		
-
+		$ledgers = $this->Ledger->find('all', array('order' => array('Ledger.op_balance', 'Ledger.op_balance_dc')));
+		$this->set('ledgers', $ledgers);
+		
+		/*$accsummary = $this->Entry->find('all', array('order' => array(
+			'assets_total_dc' => $assets->cl_total_dc,
+			'assets_total' => $assets->cl_total,
+			'liabilities_total_dc' => $liabilities->cl_total_dc,
+			'liabilities_total' => $liabilities->cl_total,
+			'income_total_dc' => $income->cl_total_dc,
+			'income_total' => $income->cl_total,
+			'expense_total_dc' => $expense->cl_total_dc,
+			'expense_total' => $expense->cl_total,)));
+		$this->set('accsummary', $accsummary);*/
+		
+		
 		return;
-	}
+		}
 
 
 
