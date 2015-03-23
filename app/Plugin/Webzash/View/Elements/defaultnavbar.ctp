@@ -53,11 +53,17 @@
 						<li><?php echo '<li>' . $this->Html->link(__d('webzash', 'Ledger Statement'), array('plugin' => 'webzash', 'controller' => 'reports', 'action' => 'ledgerstatement')); ?></li>
 						<li><?php echo '<li>' . $this->Html->link(__d('webzash', 'Ledger Entries'), array('plugin' => 'webzash', 'controller' => 'reports', 'action' => 'ledgerentries')); ?></li>
 						<li><?php echo '<li>' . $this->Html->link(__d('webzash', 'Reconciliation'), array('plugin' => 'webzash', 'controller' => 'reports', 'action' => 'reconciliation')); ?></li>
+                    </ul>
+				</li>
+                <li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Summaries <b class="caret"></b></a>
+					<ul class="dropdown-menu">
+                    	<li><?php echo '<li>' . $this->Html->link(__d('webzash', 'CPD Summary'), array('plugin' => 'webzash', 'controller' => 'summaries', 'action' => 'cpdsummary')); ?></li>
+                        <li><?php echo '<li>' . $this->Html->link(__d('webzash', 'ITEC Summary'), array('plugin' => 'webzash', 'controller' => 'summaries', 'action' => 'itecsummary')); ?></li>
                         
                         <li class="divider"></li>
                         
-                        <li><?php echo '<li>' . $this->Html->link(__d('webzash', 'CPD Summary'), array('plugin' => 'webzash', 'controller' => 'reports', 'action' => 'cpdsummary')); ?></li>
-                        <li><?php echo '<li>' . $this->Html->link(__d('webzash', 'ITEC Summary'), array('plugin' => 'webzash', 'controller' => 'reports', 'action' => 'itecsummary')); ?></li>
+                        <li><?php echo '<li>' . $this->Html->link(__d('webzash', 'Test Page'), array('plugin' => 'webzash', 'controller' => 'summaries', 'action' => 'test')); ?></li>
 					</ul>
 				</li>
 				<li><?php echo $this->Html->link(__d('webzash', 'Search'), array('plugin' => 'webzash', 'controller' => 'search', 'action' => 'index')); ?></li>
