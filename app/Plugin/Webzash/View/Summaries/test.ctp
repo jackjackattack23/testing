@@ -30,44 +30,42 @@
     
 <table class="table table-striped table-hover table-condensed">
   <thead>
-  <tr>
-    <th><?php echo __d('webzash', 'Account Name'); ?></th>
-    <th><?php echo __d('webzash', 'Account Label'); ?></th>
-    <th><?php echo __d('webzash', 'Initial Point Allocation'); ?></th>
-    <th><?php echo __d('webzash', 'Additional Points Purchased'); ?></th>
-    <th><?php echo __d('webzash', 'Total Points Available'); ?></th>
-    <th><?php echo __d('webzash', 'CPD Points Used'); ?></th>
-    <th><?php echo __d('webzash', 'Available Points Balance'); ?></th>
-    <th><?php echo __d('webzash', 'Remaining Original Points'); ?></th>
-  </tr>
+        <tr>
+          <th><?php echo __d('webzash', 'Account Name'); ?></th>
+          <th><?php echo __d('webzash', 'Account Label'); ?></th>
+          <th><?php echo __d('webzash', 'Initial Point Allocation'); ?></th>
+          <th><?php echo __d('webzash', 'Additional Points Purchased'); ?></th>
+          <th><?php echo __d('webzash', 'Total Points Available'); ?></th>
+          <th><?php echo __d('webzash', 'CPD Points Used'); ?></th>
+          <th><?php echo __d('webzash', 'Available Points Balance'); ?></th>
+          <th><?php echo __d('webzash', 'Remaining Original Points'); ?></th>
+        </tr>
   </thead>
 <?php foreach ($settings as $setting) {?>
-	<?php foreach ($wzaccounts as $wzaccount) { ?>
-    	<?php foreach ($ledgers as $ledger) { ?>
+	<?php foreach ($wzaccounts as $wzaccount) { ?> 	
 		<tr>
 			<td><?php echo h($setting['Setting']['name']); ?></td>
             <td><?php echo h($wzaccount['Wzaccount']['label']); ?></td>    
-            <td><?php echo h($opdiff['opdiff_balance_dc'], $opdiff['opdiff_balance']); ?></td>
-            <td><?php echo h($ledger['Ledger']['op_balance_dc']) . ' ' . h($ledger['Ledger']['op_balance']); ?></td>
+            <td><?php echo h($opdiff['opdiff_balance_dc']). ' ' . h ($opdiff['opdiff_balance']); ?></td>
+            <td><?php ""; ?></td>
             <td><?php "" ?></td>
             <td><?php ""; ?></td>
             <td><?php ""; ?></td>
             <td><?php ""; ?></td>
             <td><?php ""; ?></td>
 		</tr>
-        <?php } ?>
 	<?php } ?>
 <?php } ?>
-	<tr>
-    	<th><strong><?php echo __d('webzash', 'Totals'); ?></strong></th>
-        <td><strong><?php echo "0"; ?></strong></td>
-        <td><strong><?php echo "0"; ?></strong></td>
-        <td><strong><?php echo "0"; ?></strong></td>
-        <td><strong><?php echo "0"; ?></strong></td>
-        <td><strong><?php echo "0"; ?></strong></td>
-        <td><strong><?php echo "0"; ?></strong></td>
-        <td><strong><?php echo "0"; ?></strong></td>
-    </tr>
+        <tr>
+            <th><strong><?php echo __d('webzash', 'Totals'); ?></strong></th>
+            <td><strong><?php echo "0"; ?></strong></td>
+            <td><strong><?php echo "0"; ?></strong></td>
+            <td><strong><?php echo "0"; ?></strong></td>
+            <td><strong><?php echo "0"; ?></strong></td>
+            <td><strong><?php echo "0"; ?></strong></td>
+            <td><strong><?php echo "0"; ?></strong></td>
+            <td><strong><?php echo "0"; ?></strong></td>
+        </tr>
 </table>
 
 

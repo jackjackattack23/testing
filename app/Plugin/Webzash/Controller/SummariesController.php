@@ -86,6 +86,7 @@ class SummariesController extends WebzashAppController {
 		$opdiff = $this->Ledger->getOpeningDiff();
 		$this->set('opdiff', $opdiff);
 		
+		
 		return;
 		}
 
