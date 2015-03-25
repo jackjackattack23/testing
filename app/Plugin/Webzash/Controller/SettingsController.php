@@ -102,7 +102,11 @@ class SettingsController extends WebzashAppController {
 			$ds = $this->Setting->getDataSource();
 			$ds->begin();
 
-			if ($this->Setting->save($settings, true, array('name', 'address', 'email', 'fy_start', 'fy_end', 'currency_symbol', 'date_format'))) {
+			if ($this->Setting->save($settings, true, array('name', 'address', 
+															'fname1', 'lname1', 'email1', 'phone1', 
+															'fname2', 'lname2', 'email2', 'phone2',
+															'fname3', 'lname3', 'email3', 'phone3',
+															/*'email',*/ 'fy_start', 'fy_end', /*'currency_symbol',*/ 'date_format'))) {
 				$this->Log->add('Updated account settings', 1);
 				$ds->commit();
 				$this->Session->setFlash(__d('webzash', 'Account settings updated.'), 'success');
@@ -461,6 +465,20 @@ class SettingsController extends WebzashAppController {
 					'id' => '1',
 					'name' => $this->request->data['Wzaccount']['name'],
 					'address' => $old_account_setting['Setting']['address'],
+					
+					'fname1' => $old_account_setting['Setting']['fname1'],
+					'lname1' => $old_account_setting['Setting']['lname1'],
+					'email1' => $old_account_setting['Setting']['email1'],
+					'phone1' => $old_account_setting['Setting']['phone1'],
+					'fname2' => $old_account_setting['Setting']['fname2'],
+					'lname2' => $old_account_setting['Setting']['lname2'],
+					'email2' => $old_account_setting['Setting']['email2'],
+					'phone2' => $old_account_setting['Setting']['phone2'],
+					'fname3' => $old_account_setting['Setting']['fname3'],
+					'lname3' => $old_account_setting['Setting']['lname3'],
+					'email3' => $old_account_setting['Setting']['email3'],
+					'phone3' => $old_account_setting['Setting']['phone3'],
+					
 					'email' => $old_account_setting['Setting']['email'],
 					'fy_start' => dateToSql($this->request->data['Wzaccount']['fy_start']),
 					'fy_end' => dateToSql($this->request->data['Wzaccount']['fy_end']),
@@ -541,7 +559,7 @@ class SettingsController extends WebzashAppController {
 
 	/**
 	 * Extract the list of groups and ledgers from AccountList object
-	 * and update the globla variables $group_list and $ledger_list
+	 * and update the global variables $group_list and $ledger_list
 	 */
 	public function _extract_groups_ledgers($accountlist, $calculate_closing)
 	{

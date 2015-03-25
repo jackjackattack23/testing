@@ -35,122 +35,121 @@ if (!extension_loaded('bcmath')) {
 }
 ?>
 
+
+<br/>
 <div class="row">
-	<div class="col-md-4">
-		<div class="panel panel-info">
-			<div class="panel-heading"><?php echo __d('webzash', 'Account details'); ?></div>
+
+<!--Column 1-->
+<div class="col-md-4">
+
+	<!--Account Details Start-->
+    <div class="panel panel-info">
+        <div class="panel-heading"><strong><?php echo __d('webzash', 'Account Details'); ?></strong></div>
+        <div class="panel-body">
+        <table>
+            <tr>
+                <td><strong><?php echo __d('webzash', 'Account Name:'); ?></strong></td>
+                <td><?php echo h(Configure::read('Account.name')); ?></td>
+            </tr>
+            <!--<tr>
+                <td><strong><?php/* echo __d('webzash', 'Account Email:'); */?></strong></td>
+                <td><?php/* echo h(Configure::read('Account.email1')); */?></td>
+            </tr>
+            <tr>
+                <td><strong><?php/* echo __d('webzash', 'User Role:'); */?></strong></td>
+                <td><?php/* echo h($this->Session->read('ActiveAccount.account_role')); */?></td>
+            </tr>-->
+            <tr>
+                <td><strong><?php echo __d('webzash', 'Financial Year:'); ?></strong></td>
+                <td><?php echo dateFromSql(Configure::read('Account.startdate')) . ' to ' . dateFromSql(Configure::read('Account.enddate')); ?></td>
+            </tr>
+            <tr>
+                <td><strong><?php echo __d('webzash', 'Account Status:'); ?></strong></td>
+                <?php
+                    if (Configure::read('Account.locked') == 0) {
+                        echo '<td>' . __d('webzash', 'Unlocked') . '</td>';
+                    } else {
+                        echo '<td class="error-text">' . __d('webzash', 'Locked') . '</td>';
+                    }
+                ?>
+            </tr>
+        </table>
+        </div>
+    </div>
+	<!--Account Details End-->	
+    
+    <!--Campus Contacts-->
+    	<div class="panel panel-info">
+			<div class="panel-heading"><strong><?php echo __d('webzash', 'Campus Contacts'); ?></strong></div>
 			<div class="panel-body">
-				<table>
-					<tr>
-						<td><?php echo __d('webzash', 'Name'); ?></td>
-						<td><?php echo h(Configure::read('Account.name')); ?></td>
-					</tr>
-					<tr>
-						<td><?php echo __d('webzash', 'Email'); ?></td>
-						<td><?php echo h(Configure::read('Account.email')); ?></td>
-					</tr>
-					<tr>
-						<td><?php echo __d('webzash', 'Role'); ?></td>
-						<td><?php echo h($this->Session->read('ActiveAccount.account_role')); ?></td>
-					</tr>
-					<tr>
-						<td><?php echo __d('webzash', 'Currency'); ?></td>
-						<td><?php echo h(Configure::read('Account.currency_symbol')); ?></td>
-					</tr>
-					<tr>
-						<td><?php echo __d('webzash', 'Financial Year'); ?></td>
-						<td><?php echo dateFromSql(Configure::read('Account.startdate')) . ' to ' . dateFromSql(Configure::read('Account.enddate')); ?></td>
-					</tr>
-					<tr>
-						<td><?php echo __d('webzash', 'Status'); ?></td>
-						<?php
-							if (Configure::read('Account.locked') == 0) {
-								echo '<td>' . __d('webzash', 'Unlocked') . '</td>';
-							} else {
-								echo '<td class="error-text">' . __d('webzash', 'Locked') . '</td>';
-							}
-						?>
-					</tr>
-				</table>
+				<strong><?php echo (Configure::read('Account.fname1')) . " " . h(Configure::read('Account.lname1')); ?></strong><br/>
+                <?php echo h(Configure::read('Account.email1')); ?><br/>
+                <?php echo h(Configure::read('Account.phone1')); ?><br/>
+                <br/>
+                <strong><?php echo h(Configure::read('Account.fname2')) . " " . h(Configure::read('Account.lname2')); ?></strong><br/>
+                <?php echo h(Configure::read('Account.email2')); ?><br/>
+                <?php echo h(Configure::read('Account.phone2')); ?><br/>
+                <br/>
+                <strong><?php echo h(Configure::read('Account.fname3')) . " " . h(Configure::read('Account.lname3')); ?></strong><br/>
+                <?php echo h(Configure::read('Account.email3')); ?><br/>
+				<?php echo h(Configure::read('Account.phone3')); ?><br/>
 			</div>
 		</div>
-		<!--<div class="panel panel-info">
-			<div class="panel-heading"><?php /* echo __d('webzash', 'Bank & cash summary'); ?></div>
-			<div class="panel-body">
-				<table>
-				<?php
-					foreach ($ledgers as $ledger) {
-						echo '<tr>';
-						echo '<td>' . $ledger['name'] . '</td>';
-						echo '<td>' . toCurrency($ledger['balance']['dc'], $ledger['balance']['amount']) . '</td>';
-						echo '</tr>';
-					}
-				*/?>
-				</table>
-			</div>
-		</div>-->
-		<div class="panel panel-info">
-			<div class="panel-heading"><?php echo __d('webzash', 'Account summary'); ?></div>
+        <!--Campus Contacts End-->
+        
+	</div>
+    <!--End Column 1-->
+    
+    <!--Column 2-->
+	<div class="col-md-4">
+    	
+        <!--Account Summary Start-->
+    	<div class="panel panel-info">
+			<div class="panel-heading"><strong><?php echo __d('webzash', 'Account Summary'); ?></strong></div>
 			<div class="panel-body">
 				<table>
 					<tr>
-						<td><?php echo __d('webzash', 'Assets'); ?></td>
+						<td><strong><?php echo __d('webzash', 'Label 1 (Assets):'); ?></strong></td>
 						<td><?php echo toCurrency($accsummary['assets_total_dc'], $accsummary['assets_total']); ?></td>
 					</tr>
 					<tr>
-						<td><?php echo __d('webzash', ' Liabilities and Owners Equity'); ?></td>
+						<td><strong><?php echo __d('webzash', 'Label 2 (Liabilities and Owners Equity):'); ?></strong></td>
 						<td><?php echo toCurrency($accsummary['liabilities_total_dc'], $accsummary['liabilities_total']); ?></td>
 					</tr>
 					<tr>
-						<td><?php echo __d('webzash', 'Income'); ?></td>
+						<td><strong><?php echo __d('webzash', 'Label 3 (Income):'); ?></strong></td>
 						<td><?php echo toCurrency($accsummary['income_total_dc'], $accsummary['income_total']); ?></td>
 					</tr>
 					<tr>
-						<td><?php echo __d('webzash', 'Expense'); ?></td>
+						<td><strong><?php echo __d('webzash', 'Label 4 (Expense):'); ?></strong></td>
 						<td><?php echo toCurrency($accsummary['expense_total_dc'], $accsummary['expense_total']); ?></td>
 					</tr>
 				</table>
 			</div>
 		</div>
-	</div>
+        <!--Account Summary End-->
+    </div>
+    <!--End Column 2-->
+        
+    <!--Column 3-->
 	<div class="col-md-4">
+        
+        <!--Queue Start-->
 		<div class="panel panel-info">
-			<div class="panel-heading"><?php echo __d('webzash', 'View the Queue'); ?></div>
+			<div class="panel-heading"><strong><?php echo __d('webzash', 'Account Entries'); ?></strong></div>
 			<div class="panel-body">
             	<table>
 					<tr>
-						<td><?php echo '<a href="/sites/cpd-points/entries/index/queue:1" class = "btn btn-default">Approved Items</a>'; ?></td>
-                        <td><?php echo '<a href="/sites/cpd-points/entries/index/queue:2" class = "btn btn-default">Rejected Items</a>'; ?></td>
-                        <td><?php echo '<a href="/sites/cpd-points/entries/index/queue:3" class = "btn btn-default">Pending Items</a>'; ?></td>
+						<td><?php echo '<a href="/sites/cpd-points/entries/index/queue:1" class = "btn btn-success">Approved</a>'; ?></td>
+                        <td><?php echo '<a href="/sites/cpd-points/entries/index/queue:2" class = "btn btn-danger">Rejected</a>'; ?></td>
+                        <td><?php echo '<a href="/sites/cpd-points/entries/index/queue:3" class = "btn btn-warning">Pending</a>'; ?></td>
 				    </tr>
                 </table>
 			</div>
-		</div>
-        <div class="panel panel-info">
-			<div class="panel-heading"><?php echo __d('webzash', 'Recent activity'); ?></div>
-			<div class="panel-body">
-				<?php
-					if (count($logs) <= 0) {
-						echo 'Nothing here.';
-					} else {
-						echo '<table>';
-						echo '<tr>';
-							  echo '<td><strong>' . 'User' . '</strong></td>';
-							  echo '<td><strong>' . 'Date of Change' . '</strong></td>';
-							  echo '<td><strong>' . 'Description' . '</strong></td>';
-						echo '</tr>';
-						foreach ($logs as $row => $data) {
-							echo '<tr>';
-							  echo '<td>' . h($data['Log']['user']) . '</td>';
-							  echo '<td>' . h($data['Log']['date']) . '</td>';
-							  echo '<td>' . h($data['Log']['message']) . '</td>';
-							echo '</tr>';
-						}
-						echo '</table>';
-						echo '<span class="pull-right">' . $this->Html->link(__d('webzash', 'more'), array('plugin' => 'webzash', 'controller' => 'logs', 'action' => 'index')) . '</span>';
-					}
-				?>
-			</div>
-		</div>
+		</div> 
+        <!--Queue End-->
+            
 	</div>
+    <!--End Column 3-->
+    
 </div>

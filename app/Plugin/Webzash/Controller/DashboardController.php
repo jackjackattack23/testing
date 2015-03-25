@@ -37,7 +37,7 @@ App::uses('AccountList', 'Webzash.Lib');
 class DashboardController extends WebzashAppController {
 
 	public $uses = array('Webzash.Group', 'Webzash.Ledger', 'Webzash.Entry',
-		'Webzash.Entryitem', 'Webzash.Tag', 'Webzash.Log');
+		'Webzash.Entryitem', 'Webzash.Tag', 'Webzash.Log', 'Webzash.Setting');
 
 /**
  * index method

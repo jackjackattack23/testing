@@ -65,6 +65,64 @@ $(document).ready(function() {
 
 	echo $this->Form->input('name', array('label' => __d('webzash', 'Company / Personal Name')));
 	echo $this->Form->input('address', array('type' => 'textarea', 'label' => __d('webzash', 'Address'), 'rows' => '3'));
+?>
+
+<!--Start Campus Contacts Row-->
+<div class="row">
+
+<!--Column 1-->
+<div class="col-md-4">
+<!--Campus Contact 1-->
+    <div class="panel panel-info">
+        <div class="panel-heading"><strong><?php echo __d('webzash', 'Campus Contact 1'); ?></strong></div>
+        <div class="panel-body">
+        <table>
+            <tr><td><strong><?php echo $this->Form->input('fname1', array('label' => __d('webzash', 'First Name'))); ?></strong></td></tr>
+            <tr><td><strong><?php echo $this->Form->input('lname1', array('label' => __d('webzash', 'Last Name'))); ?></strong></td></tr>
+            <tr><td><strong><?php echo $this->Form->input('email1', array('label' => __d('webzash', 'Email'))); ?></strong></td></tr>
+            <tr><td><strong><?php echo $this->Form->input('phone1', array('label' => __d('webzash', 'Phone'))); ?></strong></td></tr>
+        </table>
+        </div>
+     </div><!--End Campus Contact 1-->
+</div><!--End Column 1-->
+
+<!--Column 2-->
+<div class="col-md-4">
+<!--Campus Contact 2-->
+    <div class="panel panel-info">
+        <div class="panel-heading"><strong><?php echo __d('webzash', 'Campus Contact 2'); ?></strong></div>
+        <div class="panel-body">
+        <table>
+            <tr><td><strong><?php echo $this->Form->input('fname2', array('label' => __d('webzash', 'First Name'))); ?></strong></td></tr>
+            <tr><td><strong><?php echo $this->Form->input('lname2', array('label' => __d('webzash', 'Last Name'))); ?></strong></td></tr>
+            <tr><td><strong><?php echo $this->Form->input('email2', array('label' => __d('webzash', 'Email'))); ?></strong></td></tr>
+            <tr><td><strong><?php echo $this->Form->input('phone2', array('label' => __d('webzash', 'Phone'))); ?></strong></td></tr>
+        </table>
+        </div>
+     </div><!--End Campus Contact 2-->
+</div><!--End Column 2-->
+
+<!--Column 3-->
+<div class="col-md-4">
+<!--Campus Contact 3-->
+    <div class="panel panel-info">
+        <div class="panel-heading"><strong><?php echo __d('webzash', 'Campus Contact 3'); ?></strong></div>
+        <div class="panel-body">
+        <table>
+            <tr>
+                <tr><td><strong><?php echo $this->Form->input('fname3', array('label' => __d('webzash', 'First Name'))); ?></strong></td></tr>
+				<tr><td><strong><?php echo $this->Form->input('lname3', array('label' => __d('webzash', 'Last Name'))); ?></strong></td></tr>
+				<tr><td><strong><?php echo $this->Form->input('email3', array('label' => __d('webzash', 'Email'))); ?></strong></td></tr>
+				<tr><td><strong><?php echo $this->Form->input('phone3', array('label' => __d('webzash', 'Phone'))); ?></strong></td></tr>
+            </tr>
+        </table>
+        </div>
+     </div>
+<!--End Campus Contact 3-->
+</div><!--End Column 3-->
+</div><!--End Campus Contacts Row-->
+	
+    <?php 
 	echo $this->Form->input('email', array('label' => __d('webzash', 'Email')));
 	echo $this->Form->input('currency_symbol', array('label' => __d('webzash', 'Currency symbol')));
 	echo $this->Form->input('date_format', array('type' => 'select', 'options' => $this->Generic->dateformat_options(), 'label' => __d('webzash', 'Date format')));

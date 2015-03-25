@@ -53,6 +53,8 @@
 						<li><?php echo '<li>' . $this->Html->link(__d('webzash', 'Ledger Statement'), array('plugin' => 'webzash', 'controller' => 'reports', 'action' => 'ledgerstatement')); ?></li>
 						<li><?php echo '<li>' . $this->Html->link(__d('webzash', 'Ledger Entries'), array('plugin' => 'webzash', 'controller' => 'reports', 'action' => 'ledgerentries')); ?></li>
 						<li><?php echo '<li>' . $this->Html->link(__d('webzash', 'Reconciliation'), array('plugin' => 'webzash', 'controller' => 'reports', 'action' => 'reconciliation')); ?></li>
+                        <li class="divider"></li>
+                        <li><?php echo '<li>' . $this->Html->link(__d('webzash', 'Account Log'), array('plugin' => 'webzash', 'controller' => 'logs', 'action' => 'index')); ?></li>
                     </ul>
 				</li>
                 <li class="dropdown">

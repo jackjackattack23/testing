@@ -94,7 +94,7 @@ class WebzashAppController extends AppController {
 		/* Load account related settings and entry types */
 		$account_id = CakeSession::read('ActiveAccount.id');
 		if (empty($account_id)) {
-			$this->Session->setFlash(__d('webzash', 'Please choose a account.'), 'danger');
+			$this->Session->setFlash(__d('webzash', 'Please choose an account.'), 'danger');
 			return $this->redirect(array('plugin' => 'webzash', 'controller' => 'wzusers', 'action' => 'account'));
 		}
 
@@ -134,6 +134,20 @@ class WebzashAppController extends AppController {
 
 		Configure::write('Account.name', $setting['Setting']['name']);
 		Configure::write('Account.address', $setting['Setting']['address']);
+		
+		Configure::write('Account.fname1', $setting['Setting']['fname1']);
+		Configure::write('Account.lname1', $setting['Setting']['lname1']);
+		Configure::write('Account.email1', $setting['Setting']['email1']);
+		Configure::write('Account.phone1', $setting['Setting']['phone1']);
+		Configure::write('Account.fname2', $setting['Setting']['fname2']);
+		Configure::write('Account.lname2', $setting['Setting']['lname2']);
+		Configure::write('Account.email2', $setting['Setting']['email2']);
+		Configure::write('Account.phone2', $setting['Setting']['phone2']);
+		Configure::write('Account.fname3', $setting['Setting']['fname3']);
+		Configure::write('Account.lname2', $setting['Setting']['lname2']);
+		Configure::write('Account.email3', $setting['Setting']['email3']);
+		Configure::write('Account.phone3', $setting['Setting']['phone3']);
+		
 		Configure::write('Account.email', $setting['Setting']['email']);
 		Configure::write('Account.currency_symbol', $setting['Setting']['currency_symbol']);
 		$dateFormat = explode('|', $setting['Setting']['date_format']);

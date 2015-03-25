@@ -75,6 +75,102 @@ class Setting extends WebzashAppModel {
 				'allowEmpty' => true,
 			),
 		),
+		'fname1' => array(
+			'rule1' => array(
+				'rule' => array('maxLength', 50),
+				'message' => 'First Name cannot be more than 50 characters',
+				'required' => false,
+				'allowEmpty' => true,
+			),
+		),
+		'lname1' => array(
+			'rule1' => array(
+				'rule' => array('maxLength', 50),
+				'message' => 'Last Name cannot be more than 50 characters',
+				'required' => false,
+				'allowEmpty' => true,
+			),
+		),
+		'email1' => array(
+			'rule1' => array(
+				'rule' => array('maxLength', 100),
+				'message' => 'Email Address cannot be more than 50 characters',
+				'required' => false,
+				'allowEmpty' => true,
+			),
+		),
+		'phone1' => array(
+			'rule1' => array(
+				'rule' => array('maxLength', 11),
+				'message' => 'Phone Number cannot be more than 11 characters',
+				'required' => false,
+				'allowEmpty' => true,
+			),
+		),
+		'fname2' => array(
+			'rule1' => array(
+				'rule' => array('maxLength', 50),
+				'message' => 'First Name cannot be more than 50 characters',
+				'required' => false,
+				'allowEmpty' => true,
+			),
+		),
+		'lname2' => array(
+			'rule1' => array(
+				'rule' => array('maxLength', 50),
+				'message' => 'Last Name cannot be more than 50 characters',
+				'required' => false,
+				'allowEmpty' => true,
+			),
+		),
+		'email2' => array(
+			'rule1' => array(
+				'rule' => array('maxLength', 100),
+				'message' => 'Email Address cannot be more than 50 characters',
+				'required' => false,
+				'allowEmpty' => true,
+			),
+		),
+		'phone2' => array(
+			'rule1' => array(
+				'rule' => array('maxLength', 11),
+				'message' => 'Phone Number cannot be more than 11 characters',
+				'required' => false,
+				'allowEmpty' => true,
+			),
+		),
+		'fname3' => array(
+			'rule1' => array(
+				'rule' => array('maxLength', 50),
+				'message' => 'First Name cannot be more than 50 characters',
+				'required' => false,
+				'allowEmpty' => true,
+			),
+		),
+		'lname3' => array(
+			'rule1' => array(
+				'rule' => array('maxLength', 50),
+				'message' => 'Last Name cannot be more than 50 characters',
+				'required' => false,
+				'allowEmpty' => true,
+			),
+		),
+		'email3' => array(
+			'rule1' => array(
+				'rule' => array('maxLength', 100),
+				'message' => 'Email Address cannot be more than 50 characters',
+				'required' => false,
+				'allowEmpty' => true,
+			),
+		),
+		'phone3' => array(
+			'rule1' => array(
+				'rule' => array('maxLength', 11),
+				'message' => 'Phone Number cannot be more than 11 characters',
+				'required' => false,
+				'allowEmpty' => true,
+			),
+		),
 		'email' => array(
 			'rule1' => array(
 				'rule' => 'email',
@@ -109,7 +205,7 @@ class Setting extends WebzashAppModel {
 			'rule1' => array(
 				'rule' => array('maxLength', 255),
 				'message' => 'Currency symbol cannot be more than 255 characters',
-				'required' => true,
+				'required' => false,
 				'allowEmpty' => true,
 			),
 		),

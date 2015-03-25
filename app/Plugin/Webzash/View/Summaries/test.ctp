@@ -24,10 +24,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-?>
+?>   
 
-
-    
 <table class="table table-striped table-hover table-condensed">
   <thead>
         <tr>
@@ -67,7 +65,6 @@
             <td><strong><?php echo "0"; ?></strong></td>
         </tr>
 </table>
-
 
 
 
