@@ -31,7 +31,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 			$this->Html->url('/' . 'webzash/img/favicon.ico', true),
 			array('type' => 'icon')
 		);
-
+		
 		echo $this->Html->script('Webzash.jquery-1.10.2.js');
 
 		echo $this->Html->css('Webzash.jquery-ui.css');

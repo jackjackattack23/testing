@@ -78,11 +78,27 @@ function print_account_chart($account, $c = 0, $THIS)
 			echo '<td>Ledger</td>';
 
 			echo '<td>';
-			echo toCurrency($data['op_total_dc'], $data['op_total']);
+				if($data['op_total_dc']=="C")
+				{
+				echo str_replace("C","&nbsp;","C");
+				}
+				elseif($data['op_total_dc']=="D")
+				{
+				echo str_replace("D","-","D");
+				}
+				echo ($data['op_total']);
 			echo '</td>';
 
 			echo '<td>';
-			echo toCurrency($data['cl_total_dc'], $data['cl_total']);
+				if($data['cl_total_dc']=="C")
+				{
+				echo str_replace("C","&nbsp;","C");
+				}
+				elseif($data['cl_total_dc']=="D")
+				{
+				echo str_replace("D","-","D");
+				}
+				echo ($data['op_total']);
 			echo '</td>';
 
 			echo '<td class="td-actions">';

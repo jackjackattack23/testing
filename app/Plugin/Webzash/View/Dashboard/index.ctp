@@ -110,19 +110,51 @@ if (!extension_loaded('bcmath')) {
 				<table>
 					<tr>
 						<td><strong><?php echo __d('webzash', 'Label 1 (Assets):'); ?></strong></td>
-						<td><?php echo toCurrency($accsummary['assets_total_dc'], $accsummary['assets_total']); ?></td>
+						<td>
+							<?php if($accsummary['assets_total_dc']=="C"){
+                                        echo str_replace("C","&nbsp;","C");
+                                        }
+                                  elseif($accsummary['assets_total_dc']=="D"){
+                                        echo str_replace("D","-","D");
+                                        }?> 
+							<?php echo h($accsummary['assets_total']); ?>
+                        </td> 
 					</tr>
 					<tr>
 						<td><strong><?php echo __d('webzash', 'Label 2 (Liabilities and Owners Equity):'); ?></strong></td>
-						<td><?php echo toCurrency($accsummary['liabilities_total_dc'], $accsummary['liabilities_total']); ?></td>
+                        <td>
+							<?php if($accsummary['liabilities_total_dc']=="C"){
+                                        echo str_replace("C","&nbsp;","C");
+                                        }
+                                  elseif($accsummary['liabilities_total_dc']=="D"){
+                                        echo str_replace("D","-","D");
+                                        }?> 
+							<?php echo h($accsummary['liabilities_total']); ?>
+                        </td> 
 					</tr>
 					<tr>
 						<td><strong><?php echo __d('webzash', 'Label 3 (Income):'); ?></strong></td>
-						<td><?php echo toCurrency($accsummary['income_total_dc'], $accsummary['income_total']); ?></td>
+                        <td >
+							<?php if($accsummary['income_total_dc']=="C"){
+                                        echo str_replace("C","&nbsp;","C");
+                                        }
+                                  elseif($accsummary['income_total_dc']=="D"){
+                                        echo str_replace("D","-","D");
+                                        }?> 
+							<?php echo h($accsummary['income_total']); ?>
+                        </td> 
 					</tr>
 					<tr>
 						<td><strong><?php echo __d('webzash', 'Label 4 (Expense):'); ?></strong></td>
-						<td><?php echo toCurrency($accsummary['expense_total_dc'], $accsummary['expense_total']); ?></td>
+                        <td>
+							<?php if($accsummary['expense_total_dc']=="C"){
+                                        echo str_replace("C","&nbsp;","C");
+                                        }
+                                  elseif($accsummary['expense_total_dc']=="D"){
+                                        echo str_replace("D","-","D");
+                                        }?> 
+							<?php echo h($accsummary['expense_total']); ?>
+                        </td>
 					</tr>
 				</table>
 			</div>

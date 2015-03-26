@@ -119,7 +119,7 @@ $(document).ready(function() {
 <th><?php echo $this->Paginator->sort('number', __d('webzash', 'Number')); ?></th>
 <th><?php echo __d('webzash', 'Ledger'); ?></th>
 <th><?php echo $this->Paginator->sort('entrytype_id', __d('webzash', 'Type')); ?></th>
-<th><?php echo $this->Paginator->sort('tag_id', __d('webzash', 'Tag')); ?></th>
+<!--<th><?php /* echo $this->Paginator->sort('tag_id', __d('webzash', 'Tag')); */ ?></th>-->
 <th><?php echo $this->Paginator->sort('dr_total', __d('webzash', 'Debit Amount')); ?></th>
 <th><?php echo $this->Paginator->sort('cr_total', __d('webzash', 'Credit Amount')); ?></th>
 <th><?php echo __d('webzash', 'Description'); ?></th>  
@@ -135,7 +135,7 @@ foreach ($entries as $entry) {
 	echo '<td>' . h(toEntryNumber($entry['Entry']['number'], $entry['Entry']['entrytype_id'])) . '</td>';
 	echo '<td>' . h($this->Generic->entryLedgers($entry['Entry']['id'])) . '</td>';
 	echo '<td>' . h($entryTypeName) . '</td>';
-	echo '<td>' . $this->Generic->showTag($entry['Entry']['tag_id']) . '</td>';
+	/*echo '<td>' . $this->Generic->showTag($entry['Entry']['tag_id']) . '</td>';*/
 	echo '<td>' . toCurrency('D', $entry['Entry']['dr_total']) . '</td>';
 	echo '<td>' . toCurrency('C', $entry['Entry']['cr_total']) . '</td>';
 	echo '<td>' . h($entry['Entry']['narration']) . '</td>';
@@ -170,8 +170,8 @@ foreach ($entries as $entry) {
 	<ul class="pagination">
 		<?php
 			echo $this->Paginator->first(__d('webzash', 'first'), array('tag' => 'li'), null, array('tag' => 'li','class' => 'disabled','disabledTag' => 'a'));
-	                echo $this->Paginator->prev(__d('webzash', 'prev'), array('tag' => 'li'), null, array('tag' => 'li','class' => 'disabled','disabledTag' => 'a'));
-	                echo $this->Paginator->numbers(array('separator' => '','currentTag' => 'a', 'currentClass' => 'active','tag' => 'li','first' => 1));
+	        echo $this->Paginator->prev(__d('webzash', 'prev'), array('tag' => 'li'), null, array('tag' => 'li','class' => 'disabled','disabledTag' => 'a'));
+	        echo $this->Paginator->numbers(array('separator' => '','currentTag' => 'a', 'currentClass' => 'active','tag' => 'li','first' => 1));
 			echo $this->Paginator->next(__d('webzash', 'next'), array('tag' => 'li','currentClass' => 'disabled'), null, array('tag' => 'li','class' => 'disabled','disabledTag' => 'a'));
 			echo $this->Paginator->last(__d('webzash', 'last'), array('tag' => 'li'), null, array('tag' => 'li','class' => 'disabled','disabledTag' => 'a'));
 		?>
