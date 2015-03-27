@@ -44,14 +44,7 @@
 		<tr>
 			<td><?php echo h($setting['Setting']['name']); ?></td>
             <td><?php echo h($wzaccount['Wzaccount']['label']); ?></td>    
-            <td>
-			<?php if($opdiff['opdiff_balance_dc']=="C"){
-						echo str_replace("C","  ","C");
-						}
-				  elseif($opdiff['opdiff_balance_dc']=="D"){
-						echo str_replace("D","- ","D");
-						} ?> 
-			<?php echo  h ($opdiff['opdiff_balance']); ?></td>
+            <td><?php echo h($opdiff['opdiff_balance_dc']). ' ' . h ($opdiff['opdiff_balance']); ?></td>
             <td><?php ""; ?></td>
             <td><?php "" ?></td>
             <td><?php ""; ?></td>
@@ -74,7 +67,14 @@
 </table>
 
 
-
-
+<div>
+<?php if($opdiff['opdiff_balance_dc']=="C"){
+			echo str_replace("C","  ","C");
+			}
+	  elseif($opdiff['opdiff_balance_dc']=="D"){
+			echo str_replace("D","- ","D");
+			} ?> 
+<?php echo  h ($opdiff['opdiff_balance']); ?>
+</div>
 
 

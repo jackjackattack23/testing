@@ -313,7 +313,11 @@ $(document).ready(function() {
 			'class' => 'form-control',
 		),
 	));
+?>
 
+<div style="visibility:hidden;">
+
+<?php
 	$prefixNumber = '';
 	$suffixNumber = '';
 	if ((Configure::read('Account.ET.' . $entrytype['Entrytype']['id'] . '.prefix') != '') &&
@@ -408,6 +412,11 @@ $(document).ready(function() {
 
 	echo $this->Form->input('narration', array('type' => 'textarea', 'label' => __d('webzash', 'Narration'), 'rows' => '3'));
 	/*echo $this->Form->input('tag_id', array('type' => 'select', 'options' => $tag_options, 'label' => __d('webzash', 'Tag')));*/
+	?>
+    
+    </div>
+    
+    <?php
 	echo $this->Form->input('queue_id', array('type' => 'select', 'options' => $queue_options, 'label' => __d('webzash', 'Status')));
 
 	echo '<div class="form-group">';

@@ -162,11 +162,11 @@ $(document).ready(function() {
 	echo '<br />';
 
 	echo '<span class="bold-text">' . __d('webzash', 'Description') . ' : ' . '</span>' . h($entry['Entry']['narration']);
-	echo '<br /><br />';
-	echo '<span class="bold-text">' . __d('webzash', 'Tag') . ' : ' . '</span>' . $this->Generic->showTag($entry['Entry']['tag_id']);
+	/*echo '<br /><br />';
+	echo '<span class="bold-text">' . __d('webzash', 'Tag') . ' : ' . '</span>' . $this->Generic->showTag($entry['Entry']['tag_id']);*/
 
 	echo '<br /><br />';
-	echo '<span class="bold-text">' . __d('webzash', 'Status') . ' : ' . '</span>' . $this->Generic->showQueue($entry['Entry']['queue_id']);
+	echo '<span class="bold-text">' . __d('webzash', 'Current Status') . ' : ' . '</span>' . $this->Generic->showQueue($entry['Entry']['queue_id']);
 	
 	echo '<br /><br />';
 

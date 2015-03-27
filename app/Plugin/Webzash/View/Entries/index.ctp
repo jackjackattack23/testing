@@ -142,7 +142,10 @@ foreach ($entries as $entry) {
 	echo '<td>';
 
 	/* View */
-	echo $this->Html->link($this->Html->tag('i', '', array('class' => 'glyphicon glyphicon-log-in')) . __d('webzash', ' View'), array('plugin' => 'webzash', 'controller' => 'entries', 'action' => 'view', h($entryTypeLabel), $entry['Entry']['id']), array('class' => 'no-hover', 'escape' => false));
+	echo $this->Html->link($this->Html->tag('i', '', array('class' => 'glyphicon glyphicon-check')) . __d('webzash', ' View'), array('plugin' => 'webzash', 'controller' => 'entries', 'action' => 'view', h($entryTypeLabel), $entry['Entry']['id']), array('class' => 'no-hover', 'escape' => false));
+	echo $this->Html->tag('span', '', array('class' => 'link-pad'));
+	/* Update Status */
+	echo $this->Html->link($this->Html->tag('i', '', array('class' => 'glyphicon glyphicon-log-in')) . __d('webzash', ' Update'), array('plugin' => 'webzash', 'controller' => 'entries', 'action' => 'update', h($entryTypeLabel), $entry['Entry']['id']), array('class' => 'no-hover', 'escape' => false));
 	echo $this->Html->tag('span', '', array('class' => 'link-pad'));
 	/* Edit */
 	echo $this->Html->link($this->Html->tag('i', '', array('class' => 'glyphicon glyphicon-edit')) . __d('webzash', ' Edit'), array('plugin' => 'webzash', 'controller' => 'entries', 'action' => 'edit', h($entryTypeLabel), $entry['Entry']['id']), array('class' => 'no-hover', 'escape' => false));

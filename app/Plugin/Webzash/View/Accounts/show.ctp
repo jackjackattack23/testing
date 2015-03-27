@@ -80,7 +80,7 @@ function print_account_chart($account, $c = 0, $THIS)
 			echo '<td>';
 				if($data['op_total_dc']=="C")
 				{
-				echo str_replace("C","&nbsp;","C");
+				echo str_replace("C","+","C");
 				}
 				elseif($data['op_total_dc']=="D")
 				{
@@ -92,7 +92,7 @@ function print_account_chart($account, $c = 0, $THIS)
 			echo '<td>';
 				if($data['cl_total_dc']=="C")
 				{
-				echo str_replace("C","&nbsp;","C");
+				echo str_replace("C","+","C");
 				}
 				elseif($data['cl_total_dc']=="D")
 				{

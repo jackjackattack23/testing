@@ -48,8 +48,12 @@ if (!extension_loaded('bcmath')) {
         <div class="panel-body">
         <table>
             <tr>
-                <td><strong><?php echo __d('webzash', 'Account Name:'); ?></strong></td>
+                <td><strong><?php echo __d('webzash', 'Campus Name:'); ?></strong></td>
                 <td><?php echo h(Configure::read('Account.name')); ?></td>
+            </tr>
+            <tr>
+                <td><strong><?php echo __d('webzash', 'Campus Address:'); ?></strong></td>
+                <td><?php echo h(Configure::read('Account.address')); ?></td>
             </tr>
             <!--<tr>
                 <td><strong><?php/* echo __d('webzash', 'Account Email:'); */?></strong></td>
@@ -77,8 +81,61 @@ if (!extension_loaded('bcmath')) {
         </div>
     </div>
 	<!--Account Details End-->	
+        
+	</div>
+    <!--End Column 1-->
     
-    <!--Campus Contacts-->
+    <!--Column 2-->
+	<div class="col-md-4">
+    	
+        <!--Account Summary Start-->
+    	<div class="panel panel-info">
+			<div class="panel-heading"><strong><?php echo __d('webzash', 'Account Summary'); ?></strong></div>
+			<div class="panel-body">
+				<table>
+					<tr>
+						<td><strong><?php echo __d('webzash', 'Label 1 (Assets):'); ?></strong></td>
+						<td><?php echo toCurrency($accsummary['assets_total_dc'], $accsummary['assets_total']); ?></td>
+					</tr>
+					<tr>
+						<td><strong><?php echo __d('webzash', 'Label 2 (Liabilities and Owners Equity):'); ?></strong></td>
+						<td><?php echo toCurrency($accsummary['liabilities_total_dc'], $accsummary['liabilities_total']); ?></td>
+					</tr>
+					<tr>
+						<td><strong><?php echo __d('webzash', 'Label 3 (Income):'); ?></strong></td>
+						<td><?php echo toCurrency($accsummary['income_total_dc'], $accsummary['income_total']); ?></td>
+					</tr>
+					<tr>
+						<td><strong><?php echo __d('webzash', 'Label 4 (Expense):'); ?></strong></td>
+						<td><?php echo toCurrency($accsummary['expense_total_dc'], $accsummary['expense_total']); ?></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+        <!--Account Summary End-->
+        
+        <!--Queue Start-->
+		<div class="panel panel-info">
+			<div class="panel-heading"><strong><?php echo __d('webzash', 'Account Entries'); ?></strong></div>
+			<div class="panel-body">
+            	<table>
+					<tr>
+						<td><?php echo '<a href="/sites/cpd-points/entries/index/queue:1" class = "btn btn-success">Approved</a>'; ?></td>
+                        <td><?php echo '<a href="/sites/cpd-points/entries/index/queue:2" class = "btn btn-danger">Rejected</a>'; ?></td>
+                        <td><?php echo '<a href="/sites/cpd-points/entries/index/queue:3" class = "btn btn-warning">Pending</a>'; ?></td>
+				    </tr>
+                </table>
+			</div>
+		</div> 
+        <!--Queue End-->
+        
+    </div>
+    <!--End Column 2-->
+    
+    <!--Column 3-->
+	<div class="col-md-4">
+    
+    	<!--Campus Contacts-->
     	<div class="panel panel-info">
 			<div class="panel-heading"><strong><?php echo __d('webzash', 'Campus Contacts'); ?></strong></div>
 			<div class="panel-body">
@@ -97,91 +154,7 @@ if (!extension_loaded('bcmath')) {
 		</div>
         <!--Campus Contacts End-->
         
-	</div>
-    <!--End Column 1-->
-    
-    <!--Column 2-->
-	<div class="col-md-4">
-    	
-        <!--Account Summary Start-->
-    	<div class="panel panel-info">
-			<div class="panel-heading"><strong><?php echo __d('webzash', 'Account Summary'); ?></strong></div>
-			<div class="panel-body">
-				<table>
-					<tr>
-						<td><strong><?php echo __d('webzash', 'Label 1 (Assets):'); ?></strong></td>
-						<td>
-							<?php if($accsummary['assets_total_dc']=="C"){
-                                        echo str_replace("C","&nbsp;","C");
-                                        }
-                                  elseif($accsummary['assets_total_dc']=="D"){
-                                        echo str_replace("D","-","D");
-                                        }?> 
-							<?php echo h($accsummary['assets_total']); ?>
-                        </td> 
-					</tr>
-					<tr>
-						<td><strong><?php echo __d('webzash', 'Label 2 (Liabilities and Owners Equity):'); ?></strong></td>
-                        <td>
-							<?php if($accsummary['liabilities_total_dc']=="C"){
-                                        echo str_replace("C","&nbsp;","C");
-                                        }
-                                  elseif($accsummary['liabilities_total_dc']=="D"){
-                                        echo str_replace("D","-","D");
-                                        }?> 
-							<?php echo h($accsummary['liabilities_total']); ?>
-                        </td> 
-					</tr>
-					<tr>
-						<td><strong><?php echo __d('webzash', 'Label 3 (Income):'); ?></strong></td>
-                        <td >
-							<?php if($accsummary['income_total_dc']=="C"){
-                                        echo str_replace("C","&nbsp;","C");
-                                        }
-                                  elseif($accsummary['income_total_dc']=="D"){
-                                        echo str_replace("D","-","D");
-                                        }?> 
-							<?php echo h($accsummary['income_total']); ?>
-                        </td> 
-					</tr>
-					<tr>
-						<td><strong><?php echo __d('webzash', 'Label 4 (Expense):'); ?></strong></td>
-                        <td>
-							<?php if($accsummary['expense_total_dc']=="C"){
-                                        echo str_replace("C","&nbsp;","C");
-                                        }
-                                  elseif($accsummary['expense_total_dc']=="D"){
-                                        echo str_replace("D","-","D");
-                                        }?> 
-							<?php echo h($accsummary['expense_total']); ?>
-                        </td>
-					</tr>
-				</table>
-			</div>
-		</div>
-        <!--Account Summary End-->
     </div>
-    <!--End Column 2-->
-        
-    <!--Column 3-->
-	<div class="col-md-4">
-        
-        <!--Queue Start-->
-		<div class="panel panel-info">
-			<div class="panel-heading"><strong><?php echo __d('webzash', 'Account Entries'); ?></strong></div>
-			<div class="panel-body">
-            	<table>
-					<tr>
-						<td><?php echo '<a href="/sites/cpd-points/entries/index/queue:1" class = "btn btn-success">Approved</a>'; ?></td>
-                        <td><?php echo '<a href="/sites/cpd-points/entries/index/queue:2" class = "btn btn-danger">Rejected</a>'; ?></td>
-                        <td><?php echo '<a href="/sites/cpd-points/entries/index/queue:3" class = "btn btn-warning">Pending</a>'; ?></td>
-				    </tr>
-                </table>
-			</div>
-		</div> 
-        <!--Queue End-->
-            
-	</div>
     <!--End Column 3-->
     
 </div>
